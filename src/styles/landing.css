@@ -1,0 +1,711 @@
+/* ==========================================================================
+   Contigo Care landing — ported from the design canvas.
+   Section order: header · hero · marquee · program · closing · footer
+   ========================================================================== */
+
+.shell {
+  max-width: var(--shell-max);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+/* Shared pill buttons --------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-size: 14px;
+  line-height: 1;
+  white-space: nowrap;
+  transition:
+    opacity 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.btn--solid {
+  background: var(--accent);
+  color: var(--accent-fg);
+  padding: 16px 28px;
+  font-weight: 500;
+}
+
+.btn--solid:hover {
+  opacity: 0.86;
+}
+
+.btn--ghost {
+  border: 1px solid var(--line);
+  padding: 16px 28px;
+}
+
+.btn--ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn--lg {
+  padding: 18px 32px;
+}
+
+/* Mono label used for eyebrows, meta rows, marquee and footer ------------ */
+
+.mono {
+  font-family: var(--mono);
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+/* Header ---------------------------------------------------------------- */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px var(--gutter);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 10;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.header__logo img {
+  height: 38px;
+  width: auto;
+  display: block;
+  filter: var(--logo-filter);
+  transition: filter 0.3s ease;
+}
+
+.header__nav {
+  display: flex;
+  gap: 32px;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
+
+.header__nav a {
+  padding: 4px 0;
+  transition: color 0.2s ease;
+}
+
+.header__nav a:hover {
+  color: var(--accent);
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header__cta {
+  border-radius: 999px;
+  padding: 11px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  background: var(--accent);
+  color: var(--accent-fg);
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+}
+
+.header__cta:hover {
+  opacity: 0.86;
+}
+
+/* Language switch ------------------------------------------------------- */
+
+.lang {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+.lang__btn {
+  border: none;
+  cursor: pointer;
+  border-radius: 999px;
+  padding: 7px 12px;
+  font: inherit;
+  letter-spacing: 0.08em;
+  background: transparent;
+  color: var(--faint);
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.lang__btn[aria-pressed='true'] {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+
+/* Theme toggle ---------------------------------------------------------- */
+
+.theme-toggle {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--fg);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Hero ------------------------------------------------------------------ */
+
+.hero {
+  padding-block: 104px 64px;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--line);
+  flex-shrink: 0;
+}
+
+.hero__title {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: clamp(52px, 8vw, 118px);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  margin: 28px 0 0;
+  max-width: 17ch;
+  text-wrap: pretty;
+}
+
+.hero__title em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.hero__body {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 64px;
+  align-items: end;
+  margin-top: 52px;
+}
+
+.hero__lede {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.hero__lede p {
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0;
+  max-width: 46ch;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.hero__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  border-left: 1px solid var(--line);
+  padding-left: 28px;
+}
+
+.hero__meta div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.hero__meta dd {
+  margin: 0;
+  color: var(--fg);
+  text-align: right;
+}
+
+.hero__meta dt {
+  margin: 0;
+}
+
+/* Marquee --------------------------------------------------------------- */
+
+.marquee {
+  margin-top: 84px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 20px 0;
+  overflow: hidden;
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  gap: 68px;
+  animation: marquee 30s linear infinite;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track {
+    animation: none;
+  }
+}
+
+/* Program --------------------------------------------------------------- */
+
+.program {
+  padding-block: 92px 0;
+}
+
+.program__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.program__head h2 {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: clamp(38px, 5.2vw, 70px);
+  line-height: 1.03;
+  letter-spacing: -0.02em;
+  margin: 0;
+  max-width: 19ch;
+}
+
+.program__head p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+  max-width: 38ch;
+}
+
+/* 1px grid gap over a --line background draws the hairline rules. */
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--line);
+  margin-top: 60px;
+  border: 1px solid var(--line);
+}
+
+.pillar {
+  background: var(--bg);
+  padding: 42px 40px 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 92px;
+  min-height: 290px;
+  transition: background 0.2s ease;
+}
+
+.pillar:hover {
+  background: var(--surface);
+}
+
+.pillar__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+
+.pillar__num {
+  letter-spacing: 0.1em;
+  color: var(--faint);
+}
+
+.pillar__arrow {
+  color: var(--accent-2);
+}
+
+.pillar__text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pillar__text h3 {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 33px;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.pillar__text p {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0;
+  max-width: 42ch;
+}
+
+/* Closing CTA ----------------------------------------------------------- */
+
+.closing {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding: 72px 0 44px;
+}
+
+.closing p {
+  font-family: var(--sans);
+  font-size: clamp(28px, 3.2vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin: 0;
+  max-width: 22ch;
+}
+
+/* Legal page (/privacidad) ---------------------------------------------- */
+
+/* Narrower than the marketing sections — this one is read, not scanned. */
+.legal {
+  padding-block: 84px 0;
+  max-width: 940px;
+  margin-inline: auto;
+}
+
+.legal__head {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 48px;
+}
+
+.legal__title {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: clamp(40px, 6vw, 82px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  margin: 26px 0 0;
+  max-width: 16ch;
+}
+
+.legal__updated {
+  margin: 18px 0 0;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+}
+
+.legal__intro {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 36px 0 0;
+  max-width: 62ch;
+}
+
+.legal__sections {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Numbered two-column rows, hairline-separated like the pillar grid. */
+.legal__section {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 32px;
+  padding: 44px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.legal__num {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  padding-top: 8px;
+}
+
+.legal__body h2 {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: clamp(24px, 2.8vw, 33px);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin: 0 0 18px;
+}
+
+.legal__body p {
+  font-size: 16px;
+  line-height: 1.68;
+  color: var(--muted);
+  margin: 0 0 16px;
+  max-width: 70ch;
+}
+
+.legal__body p:last-child {
+  margin-bottom: 0;
+}
+
+.legal__contact {
+  padding: 52px 0 0;
+}
+
+.legal__contact h2 {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: clamp(24px, 2.8vw, 33px);
+  letter-spacing: -0.01em;
+  margin: 0 0 16px;
+}
+
+.legal__contact > p {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 0;
+  max-width: 60ch;
+}
+
+.legal__contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 28px 0 0;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  border-left: 1px solid var(--line);
+  padding-left: 28px;
+  max-width: 520px;
+}
+
+.legal__contact-list div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.legal__contact-list dt {
+  margin: 0;
+}
+
+.legal__contact-list dd {
+  margin: 0;
+  color: var(--fg);
+  text-align: right;
+}
+
+.legal__contact-list a {
+  color: var(--accent);
+}
+
+.legal__contact-list a:hover {
+  opacity: 0.8;
+}
+
+/* Footer ---------------------------------------------------------------- */
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 22px 0 40px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+.site-footer__link {
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.site-footer__link:hover {
+  color: var(--accent);
+}
+
+/* ==========================================================================
+   Responsive — the canvas is a desktop artboard; these keep it intact above
+   1024px and reflow it below.
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .hero {
+    padding-block: 72px 48px;
+  }
+
+  .hero__body {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .hero__meta {
+    border-left: none;
+    border-top: 1px solid var(--line);
+    padding-left: 0;
+    padding-top: 24px;
+    max-width: 480px;
+  }
+
+  .marquee {
+    margin-top: 56px;
+  }
+
+  .program {
+    padding-block: 72px 0;
+  }
+
+  .pillars {
+    margin-top: 44px;
+  }
+
+  .pillar {
+    padding: 36px 32px 42px;
+    gap: 64px;
+    min-height: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .header__nav {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .legal {
+    padding-block: 56px 0;
+  }
+
+  .legal__head {
+    padding-bottom: 36px;
+  }
+
+  .legal__intro {
+    font-size: 16px;
+    margin-top: 28px;
+  }
+
+  .legal__section {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 34px 0;
+  }
+
+  .legal__num {
+    padding-top: 0;
+  }
+
+  .legal__contact-list {
+    border-left: none;
+    border-top: 1px solid var(--line);
+    padding-left: 0;
+    padding-top: 22px;
+  }
+}
+
+@media (max-width: 760px) {
+  .pillars {
+    grid-template-columns: 1fr;
+  }
+
+  .program__head {
+    gap: 24px;
+  }
+
+  .closing {
+    padding: 56px 0 36px;
+  }
+}
+
+@media (max-width: 560px) {
+  .header {
+    padding: 16px var(--gutter);
+    gap: 12px;
+  }
+
+  .header__logo img {
+    height: 30px;
+  }
+
+  .header__cta {
+    display: none;
+  }
+
+  .hero {
+    padding-block: 56px 40px;
+  }
+
+  .hero__title {
+    font-size: clamp(38px, 11vw, 56px);
+  }
+
+  .hero__lede p {
+    font-size: 17px;
+  }
+
+  .hero__actions .btn {
+    flex: 1 1 100%;
+  }
+}

@@ -1,0 +1,53 @@
+/* Design tokens ported from the Contigo Care Landing design canvas. */
+
+:root,
+:root[data-theme='light'] {
+  --bg: #fbfaf7;
+  --surface: #ffffff;
+  --fg: #14181a;
+  --muted: rgba(20, 24, 26, 0.66);
+  --faint: rgba(20, 24, 26, 0.45);
+  --line: rgba(20, 24, 26, 0.13);
+  --accent: #14607f;
+  --accent-fg: #ffffff;
+  --accent-2: #6cbe5b;
+
+  --logo-filter: none;
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --bg: #0a1418;
+  --surface: #102026;
+  --fg: #eaf2f4;
+  --muted: rgba(238, 243, 241, 0.62);
+  --faint: rgba(238, 243, 241, 0.4);
+  --line: rgba(238, 243, 241, 0.14);
+  --accent: #4fc3dc;
+  --accent-fg: #072028;
+  --accent-2: #86d07e;
+
+  --logo-filter: brightness(1.35) saturate(1.05);
+  color-scheme: dark;
+}
+
+:root {
+  --sans: 'Schibsted Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Consolas, monospace;
+
+  /* Horizontal rhythm — one value drives every section's gutter. */
+  --shell-max: 1400px;
+  --gutter: 48px;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --gutter: 28px;
+  }
+}
+
+@media (max-width: 560px) {
+  :root {
+    --gutter: 20px;
+  }
+}
