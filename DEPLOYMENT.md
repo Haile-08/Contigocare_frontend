@@ -75,33 +75,7 @@ in mind for the rest of the guide; I will say clearly when to switch back.
 
 ---
 
-## Step 3 — Create a normal user (recommended)
-
-Working as `root` is risky, because a typo can break the whole machine. Let's
-make a normal user instead.
-
-```bash
-adduser deploy
-usermod -aG sudo deploy
-rsync --archive --chown=deploy:deploy ~/.ssh /home/deploy
-```
-
-The `adduser` command asks for a password — pick a strong one and save it. The
-other questions (full name, phone) can be left empty by pressing Enter.
-
-Now log out and log back in as the new user:
-
-```bash
-exit
-ssh deploy@YOUR_SERVER_IP
-```
-
-From now on, commands that change the system start with `sudo`, which means
-"do this as the administrator". It may ask for the password you just made.
-
----
-
-## Step 4 — Update the server and install Nginx
+## Step 3 — Update the server and install Nginx
 
 ```bash
 sudo apt update
@@ -127,7 +101,7 @@ Now open `http://YOUR_SERVER_IP` in your browser. You should see the default
 
 ---
 
-## Step 5 — Turn on the firewall
+## Step 4 — Turn on the firewall
 
 The firewall blocks every door into the server except the ones we open.
 
@@ -144,7 +118,7 @@ sudo ufw status
 
 ---
 
-## Step 6 — Point the domain at the server
+## Step 5 — Point the domain at the server
 
 This happens in your DNS provider (DigitalOcean's own **Networking → Domains**
 panel, or wherever `contigo.care` is registered).
@@ -172,7 +146,7 @@ your server.
 
 ---
 
-## Step 7 — Build the site on your computer
+## Step 6 — Build the site on your computer
 
 Switch back to **your own computer**, in the project folder:
 
@@ -193,26 +167,25 @@ npm run preview
 
 ---
 
-## Step 8 — Create the folder on the server
+## Step 7 — Create the folder on the server
 
 Back in the **server** terminal:
 
 ```bash
-sudo mkdir -p /var/www/contigo.care
-sudo chown -R deploy:deploy /var/www/contigo.care
+mkdir -p /var/www/contigo.care
 ```
 
-`/var/www/` is the normal place to keep websites on Ubuntu. The second command
-makes your `deploy` user the owner, so you can upload files without `sudo`.
+`/var/www/` is the normal place to keep websites on Ubuntu. This folder is
+where the built site will land in the next step.
 
 ---
 
-## Step 9 — Upload the built files
+## Step 8 — Upload the built files
 
 On **your computer**, from the project folder:
 
 ```bash
-rsync -avz --delete dist/ deploy@YOUR_SERVER_IP:/var/www/contigo.care/
+rsync -avz --delete dist/ root@YOUR_SERVER_IP:/var/www/contigo.care/
 ```
 
 What the parts mean:
@@ -226,12 +199,12 @@ What the parts mean:
 If you are on Windows without `rsync`, use `scp` instead:
 
 ```bash
-scp -r dist/* deploy@YOUR_SERVER_IP:/var/www/contigo.care/
+scp -r dist/* root@YOUR_SERVER_IP:/var/www/contigo.care/
 ```
 
 ---
 
-## Step 10 — Install the Nginx config
+## Step 9 — Install the Nginx config
 
 The config file lives in this repo at
 [deploy/nginx/contigo.care.conf](deploy/nginx/contigo.care.conf).
@@ -239,7 +212,7 @@ The config file lives in this repo at
 Copy it to the server from **your computer**:
 
 ```bash
-scp deploy/nginx/contigo.care.conf deploy@YOUR_SERVER_IP:/tmp/
+scp deploy/nginx/contigo.care.conf root@YOUR_SERVER_IP:/tmp/
 ```
 
 Then on the **server**, put it in place:
@@ -272,7 +245,7 @@ Now open `http://contigo.care`. Your landing page should be there.
 
 ---
 
-## Step 11 — Turn on HTTPS (the padlock)
+## Step 10 — Turn on HTTPS (the padlock)
 
 We use **Certbot** with **Let's Encrypt**, which gives free certificates.
 
@@ -302,7 +275,7 @@ sudo certbot renew --dry-run
 
 ---
 
-## Step 12 — Check the privacy page
+## Step 11 — Check the privacy page
 
 This site uses client side routing, so it has two addresses:
 
@@ -332,7 +305,7 @@ your computer:
 
 ```bash
 npm run build
-rsync -avz --delete dist/ deploy@YOUR_SERVER_IP:/var/www/contigo.care/
+rsync -avz --delete dist/ root@YOUR_SERVER_IP:/var/www/contigo.care/
 ```
 
 You do not need to restart or reload Nginx — it reads the files fresh each
@@ -346,7 +319,7 @@ Create a file called `deploy.sh` in the project root:
 #!/usr/bin/env bash
 set -e
 
-SERVER="deploy@YOUR_SERVER_IP"
+SERVER="root@YOUR_SERVER_IP"
 TARGET="/var/www/contigo.care/"
 
 echo "Building..."
@@ -395,13 +368,12 @@ The default site is still enabled. Run
 Nginx cannot read the files. Fix the permissions:
 
 ```bash
-sudo chown -R deploy:deploy /var/www/contigo.care
 sudo chmod -R 755 /var/www/contigo.care
 ```
 
 **404 on /privacidad**
 
-The `try_files` line is missing. See Step 12.
+The `try_files` line is missing. See Step 11.
 
 **I deployed but still see the old site**
 
@@ -428,14 +400,14 @@ sudo tail -n 50 /var/log/nginx/contigo.care.error.log
 
 | What you want | Command |
 |---|---|
-| Connect to the server | `ssh deploy@YOUR_SERVER_IP` |
+| Connect to the server | `ssh root@YOUR_SERVER_IP` |
 | Test the Nginx config | `sudo nginx -t` |
 | Apply a config change | `sudo systemctl reload nginx` |
 | Restart Nginx | `sudo systemctl restart nginx` |
 | See errors | `sudo tail -f /var/log/nginx/contigo.care.error.log` |
 | See visits | `sudo tail -f /var/log/nginx/contigo.care.access.log` |
 | Build the site | `npm run build` |
-| Deploy | `rsync -avz --delete dist/ deploy@YOUR_SERVER_IP:/var/www/contigo.care/` |
+| Deploy | `rsync -avz --delete dist/ root@YOUR_SERVER_IP:/var/www/contigo.care/` |
 | Renew certificate manually | `sudo certbot renew` |
 
 **Important paths on the server**
