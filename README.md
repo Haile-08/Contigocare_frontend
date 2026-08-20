@@ -2,6 +2,9 @@
 
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
+> **Going live?** See [DEPLOYMENT.md](DEPLOYMENT.md) for a step-by-step guide to hosting this
+> landing page on a DigitalOcean Droplet with Nginx on Ubuntu.
+
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)

@@ -27,33 +27,48 @@ function Privacy({ t }: PrivacyProps) {
             <span className="legal__num mono">{section.num}</span>
             <div className="legal__body">
               <h2>{section.title}</h2>
-              {section.body.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
+              {section.body.map((block) =>
+                Array.isArray(block) ? (
+                  <ul key={block.join('|')} className="legal__list">
+                    {block.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p key={block}>{block}</p>
+                ),
+              )}
             </div>
           </article>
         ))}
       </div>
 
       <div className="legal__contact">
-        <h2>{p.contactTitle}</h2>
-        <p>{p.contactBody}</p>
-        <dl className="legal__contact-list mono">
-          <div>
-            <dt>+ Email</dt>
-            <dd>
-              <a href={`mailto:${PRIVACY_CONTACT.email}`}>{PRIVACY_CONTACT.email}</a>
-            </dd>
-          </div>
-          <div>
-            <dt>+ Tel</dt>
-            <dd>{PRIVACY_CONTACT.phone}</dd>
-          </div>
-          <div>
-            <dt>+ Post</dt>
-            <dd>{PRIVACY_CONTACT.address}</dd>
-          </div>
-        </dl>
+        <span className="legal__num mono">{p.contactNum}</span>
+        <div className="legal__contact-body">
+          <h2>{p.contactTitle}</h2>
+          <p>{p.contactBody}</p>
+          <dl className="legal__contact-list mono">
+            <div>
+              <dt>{p.contactEmailLabel}</dt>
+              <dd>
+                <a href={`mailto:${PRIVACY_CONTACT.email}`}>{PRIVACY_CONTACT.email}</a>
+              </dd>
+            </div>
+            <div>
+              <dt>{p.contactPhoneLabel}</dt>
+              <dd>
+                <a href={`tel:+52${PRIVACY_CONTACT.phone.replace(/\s/g, '')}`}>
+                  {PRIVACY_CONTACT.phone}
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt>{p.contactAddressLabel}</dt>
+              <dd>{PRIVACY_CONTACT.address}</dd>
+            </div>
+          </dl>
+        </div>
       </div>
 
       <div className="closing">

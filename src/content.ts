@@ -7,10 +7,13 @@ export type Pillar = {
   body: string
 }
 
+/** A paragraph, or a bulleted list of items. */
+export type PrivacyBlock = string | string[]
+
 export type PrivacySection = {
   num: string
   title: string
-  body: string[]
+  body: PrivacyBlock[]
 }
 
 export type PrivacyCopy = {
@@ -21,8 +24,12 @@ export type PrivacyCopy = {
   updated: string
   intro: string
   sections: PrivacySection[]
+  contactNum: string
   contactTitle: string
   contactBody: string
+  contactEmailLabel: string
+  contactPhoneLabel: string
+  contactAddressLabel: string
   backHome: string
 }
 
@@ -52,11 +59,12 @@ export type Copy = {
   privacy: PrivacyCopy
 }
 
-/** Fill these in before the policy goes live — they appear verbatim on /privacidad. */
+/** From the Aviso de Privacidad Integral — these appear verbatim on /privacidad. */
 export const PRIVACY_CONTACT = {
-  email: 'privacy@contigo.care',
-  phone: '[phone number]',
-  address: '[mailing address]',
+  email: 'privacidad@contigo.care',
+  phone: '55 6944 0696',
+  address:
+    'Valentín Gómez Farías 9, Colonia Altavista, Álvaro Obregón, Ciudad de México, México, CP 01060',
 } as const
 
 export const COPY: Record<Lang, Copy> = {
@@ -111,106 +119,143 @@ export const COPY: Record<Lang, Copy> = {
     closing: 'Start a program with us.',
     footer: 'All rights reserved',
     privacy: {
-      linkLabel: 'Privacy policy',
+      linkLabel: 'Privacy notice',
       eyebrow: 'Legal',
-      title: 'Privacy policy',
+      title: 'Privacy notice',
       updatedLabel: 'Last updated',
       updated: 'August 20, 2026',
       intro:
-        'Contigo Care operates patient support programs on behalf of patients, providers, and program sponsors. This policy explains what information we collect through our website and our programs, how we use it, who we share it with, and the choices you have. It covers contigo.care and the enrollment, adherence, and care navigation services we run.',
+        'Contigo Care operates a digital care platform for the pharmaceutical industry that combines artificial intelligence tools with care and supervision by human staff.',
       sections: [
         {
           num: '[01]',
-          title: 'Information we collect',
+          title: 'Identity and address of the data controller',
           body: [
-            'Information you give us. Contact details (name, email, phone, mailing address), enrollment information, insurance and benefit details, prescriber and pharmacy information, financial information used to screen for copay or foundation assistance, language preference, and anything you tell a care navigator or write to us.',
-            'Health information. When you enroll in a program, we collect health information needed to support your therapy: diagnosis, prescribed treatment, dosing and refill history, adherence check-in responses, and notes from calls with our nurses and navigators.',
-            'Information we receive from others. Prescribers, pharmacies, health plans, program sponsors, and assistance foundations may send us information about your enrollment, coverage, and prescription status.',
-            'Information collected automatically. When you visit our website we collect IP address, browser and device type, pages viewed, referring page, and interaction timestamps through cookies and similar technologies.',
+            'Home Care Technologies, S.A.P.I. de C.V. (hereinafter, “Contigo Care”), with address at Valentín Gómez Farías 9, Colonia Altavista, Álvaro Obregón, Mexico City, Mexico, CP 01060, is responsible for the processing and protection of the personal data it collects through the contigo.care website and the support channels associated with the service.',
           ],
         },
         {
           num: '[02]',
-          title: 'How we use information',
+          title: 'Personal data we collect',
           body: [
-            'To enroll you in a program and verify your benefits, including prior authorization and coverage checks.',
-            'To deliver program services: refill reminders, check-in calls, dose tracking, care navigation, and nurse line support.',
-            'To screen for and apply to copay assistance and foundation programs on your behalf.',
-            'To communicate with you about your program, respond to your questions, and provide bilingual support.',
-            'To operate, secure, and improve our website and services, and to produce de-identified or aggregate reporting for program sponsors.',
-            'To meet legal, regulatory, and adverse-event reporting obligations.',
+            'Contigo Care may collect, directly or indirectly, the following personal data:',
+            [
+              'First name',
+              'Last name',
+              'Gender',
+              'Date of birth',
+              'Email address',
+              'Phone number',
+              'Address',
+              'Insurance policy information',
+              'The prescription for your treatment, along with the information it contains',
+              'Information about your treatment, your condition and your interaction with them, as well as with previous treatments',
+              'Appointments, including date and time',
+              'Clinical information directly related to the support and follow-up of your treatment',
+              'Messages, queries, requests, comments and any other information the data subject provides during the interaction',
+              'Technical data about browsing and use of the platform, where necessary for its operation, security and improvement',
+            ],
+            'Likewise, based on the information the user shares, Contigo Care may collect sensitive personal data, in particular data relating to health status, symptoms, treatments, conditions, medications, clinical information, patient data or other health information.',
+            'Contigo Care asks that you not provide information that is not necessary to handle the corresponding request or interaction.',
           ],
         },
         {
           num: '[03]',
-          title: 'Health information and HIPAA',
+          title: 'Purposes of processing',
           body: [
-            'For some programs we act as a business associate of a covered entity under the Health Insurance Portability and Accountability Act (HIPAA). Where that is the case, we handle protected health information under a business associate agreement and the covered entity’s Notice of Privacy Practices governs your rights in that information.',
-            'For programs sponsored by a manufacturer rather than a health plan or provider, HIPAA may not apply. In those programs we handle your health information under this policy, under the authorization you sign at enrollment, and under applicable state health-privacy law.',
-            'We do not sell health information, and we do not use it for advertising.',
+            'Personal data will be processed for the following primary and necessary purposes:',
+            [
+              'Identify and contact the user',
+              'Receive, manage, send reminders about and follow up on queries, requests, reports or communications made through the platform',
+              'Provide the digital care service contracted by the corresponding pharmaceutical client',
+              'Manage and confirm shipments',
+              'Route the interaction to human agents when necessary',
+              'Record, monitor, assure the quality of and follow up on conversations',
+              'Manage pharmacovigilance, quality, safety or other reports linked to pharmaceutical products, where applicable',
+              'Prevent, investigate and respond to security incidents, fraud, misuse or breaches of the terms of use',
+              'Comply with applicable legal, regulatory and contractual obligations',
+              'Handle requests to exercise ARCO rights',
+            ],
+            'In addition, with your consent where required, Contigo Care may process the data for the following secondary purposes:',
+            [
+              'Analyze usage patterns and interactions in order to improve the care experience',
+              'Evaluate, develop, train, tune, validate and improve the artificial intelligence models, features and tools used on the platform',
+              'Produce metrics, analysis and statistics, seeking to apply dissociation or anonymization measures where appropriate',
+            ],
+            'If you do not want your data processed for the secondary purposes, you may say so by emailing privacidad@contigo.care with the subject line “Negativa de finalidades secundarias”. Refusing will not affect the delivery of the primary purposes.',
           ],
         },
         {
           num: '[04]',
-          title: 'How we share information',
+          title: 'Recording of interactions and use of artificial intelligence',
           body: [
-            'With your care team — prescribers, pharmacies, and health plans — to coordinate your therapy.',
-            'With assistance foundations and copay program administrators when we apply for support on your behalf.',
-            'With service providers who work for us under contract: hosting, communications, call center technology, and analytics. They may use your information only to perform services for us.',
-            'With program sponsors, in de-identified or aggregate form. We share individually identifiable information with a sponsor only where you have authorized it or the law requires it.',
-            'When required by law, or to report adverse events and product complaints to a manufacturer or regulator.',
-            'In connection with a merger, acquisition, or sale of assets, subject to the protections in this policy.',
+            'Conversations, calls, chats, messages and other interactions carried out through the platform may be recorded, logged and stored for the purposes described in this notice.',
+            'Care may be provided in whole or in part through artificial intelligence systems, and may be complemented, reviewed or continued by authorized human staff. Data provided during interactions may be analyzed by such systems to generate responses, classify requests, support care and improve the performance, quality and security of the service.',
+            'Where processing involves sensitive personal data, Contigo Care will request the data subject’s express consent through the mechanisms enabled on the platform or during the interaction. By granting it, the data subject acknowledges that their sensitive data may be processed in accordance with this notice and exclusively for the purposes set out here.',
           ],
         },
         {
           num: '[05]',
-          title: 'Cookies and analytics',
+          title: 'Transfers and remittances of personal data',
           body: [
-            'Our website uses cookies and similar technologies to keep the site working, remember your language and theme preference, and understand how the site is used. You can block or delete cookies in your browser; parts of the site may not work as expected if you do.',
-            'We honor Global Privacy Control and other browser-based opt-out signals where applicable law requires it.',
+            'Contigo Care may carry out national or international remittances and transfers of personal data, including sensitive personal data, to the following categories of recipients:',
+            [
+              'Pharmaceutical clients, in order to handle the query, request, report or interaction linked to their products, services or programs',
+              'Technology providers, including providers of hosting, infrastructure, storage, communications, cybersecurity, analytics, support, AI tools and information processing, acting on behalf of and under the instructions of Contigo Care or of the pharmaceutical client',
+              'Affiliated companies, subsidiaries, parent companies or companies under common control, where necessary for the operation and support of the service',
+              'Competent authorities, where there is an applicable legal or regulatory obligation or a well-founded request',
+            ],
+            'Transfers requiring consent will be carried out only where it has been obtained through the enabled mechanisms. The data subject may object to transfers requiring consent by emailing privacidad@contigo.care with the subject line “Negativa de transferencias”.',
+            'Data recipients are obliged to treat the data confidentially and in accordance with the purposes that justify the remittance or transfer, and to apply security and protection measures appropriate to the nature of the information.',
           ],
         },
         {
           num: '[06]',
-          title: 'Security',
+          title: 'ARCO rights and withdrawal of consent',
           body: [
-            'We use administrative, technical, and physical safeguards to protect your information, including encryption in transit and at rest, role-based access controls, workforce training, and logging. No method of transmission or storage is completely secure, and we cannot guarantee absolute security.',
+            'The data subject, or their legal representative, may exercise their rights of Access, Rectification, Cancellation or Opposition to the processing of their personal data (“ARCO rights”), and may request the withdrawal of their consent, by sending a request to:',
+            ['Email: privacidad@contigo.care', 'Phone: 55 6944 0696'],
+            'The request must contain at least: the data subject’s name; a means of communicating the response; documents proving identity or representation, where applicable; a clear description of the data in respect of which a right is being exercised; the right being exercised; and any information that helps locate the data.',
+            'Contigo Care will process the request within the time limits set by applicable law. Withdrawal of consent does not have retroactive effect and may be limited where processing is necessary to comply with applicable legal, regulatory, contractual or public-interest obligations.',
           ],
         },
         {
           num: '[07]',
-          title: 'How long we keep information',
+          title: 'Limiting the use or disclosure of personal data',
           body: [
-            'We keep your information for as long as you are enrolled in a program and afterward for the period required by our contracts, by records-retention rules that apply to health and pharmaceutical services, and by applicable law. When information is no longer needed, we delete it or de-identify it.',
+            'The data subject may request that the use or disclosure of their personal data be limited by emailing privacidad@contigo.care with the subject line “Limitación de uso o divulgación”. Contigo Care will log the request and apply the measures that are appropriate given the nature of the processing and the applicable obligations.',
           ],
         },
         {
           num: '[08]',
-          title: 'Your rights and choices',
+          title: 'Security and retention measures',
           body: [
-            'Depending on where you live and which program you are in, you may have the right to access, correct, delete, or receive a copy of your information; to know what we collect and share; to withdraw an authorization you signed; and to opt out of certain uses. We do not sell personal information and we do not share it for cross-context behavioral advertising.',
-            'You can unsubscribe from marketing email at any time using the link in the message. Program and safety communications related to your therapy are not marketing, and you may continue to receive them while enrolled.',
-            'To exercise a right, contact us using the details below. We will verify your identity before acting on the request and will not discriminate against you for making one.',
+            'Contigo Care implements reasonable administrative, technical and physical measures to protect personal data against damage, loss, alteration, destruction, and unauthorized use, access or processing.',
+            'Personal data will be retained for as long as necessary to fulfil the purposes described, the applicable legal, regulatory and contractual obligations, and the corresponding limitation periods. Afterwards, Contigo Care will delete, block, dissociate or anonymize it, as appropriate.',
           ],
         },
         {
           num: '[09]',
-          title: 'Children',
+          title: 'Use of tracking technologies',
           body: [
-            'Our website is not directed to children under 13, and we do not knowingly collect information from them there. Where a program supports a pediatric patient, we collect that patient’s information from a parent or legal guardian who enrolls on their behalf.',
+            'The site may use cookies, pixels, server logs or other technologies to recognize preferences, maintain the operation and security of the site, generate statistics and improve the browsing experience. Users can configure their browser to limit or disable such technologies; however, some site features may be affected.',
           ],
         },
         {
           num: '[10]',
-          title: 'Changes to this policy',
+          title: 'Changes to this privacy notice',
           body: [
-            'We may update this policy as our programs and the law change. We will post the revised version on this page with a new "last updated" date, and where the change is material we will provide additional notice before it takes effect.',
+            'Contigo Care may modify or update this privacy notice to reflect legal, regulatory or operational changes, or changes in its processing practices. Modifications will be made available at contigo.care or through the means Contigo Care determines.',
           ],
         },
       ],
-      contactTitle: 'Contact us',
+      contactNum: '[11]',
+      contactTitle: 'Contact',
       contactBody:
-        'Questions about this policy, or want to exercise a privacy right? Reach our privacy team:',
+        'For any questions about this privacy notice or about the processing of personal data, you can contact Contigo Care through:',
+      contactEmailLabel: '+ Email',
+      contactPhoneLabel: '+ Phone',
+      contactAddressLabel: '+ Address',
       backHome: 'Back to home',
     },
   },
@@ -265,106 +310,143 @@ export const COPY: Record<Lang, Copy> = {
     closing: 'Comienza un programa con nosotros.',
     footer: 'Todos los derechos reservados',
     privacy: {
-      linkLabel: 'Política de privacidad',
+      linkLabel: 'Aviso de privacidad',
       eyebrow: 'Legal',
-      title: 'Política de privacidad',
+      title: 'Aviso de Privacidad Integral',
       updatedLabel: 'Última actualización',
       updated: '20 de agosto de 2026',
       intro:
-        'Contigo Care gestiona programas de apoyo al paciente en nombre de pacientes, profesionales de salud y patrocinadores de programas. Esta política explica qué información recopilamos a través de nuestro sitio web y de nuestros programas, cómo la usamos, con quién la compartimos y qué opciones tienes. Aplica a contigo.care y a los servicios de inscripción, adherencia y navegación de cuidado que operamos.',
+        'Contigo Care opera una plataforma de atención digital para la industria farmacéutica que combina herramientas de inteligencia artificial con atención y supervisión de personal humano.',
       sections: [
         {
           num: '[01]',
-          title: 'Información que recopilamos',
+          title: 'Identidad y domicilio del responsable',
           body: [
-            'Información que nos proporcionas. Datos de contacto (nombre, correo, teléfono, dirección postal), información de inscripción, datos de seguro y beneficios, información de tu médico y farmacia, información financiera que usamos para evaluar asistencia con copagos o fundaciones, idioma preferido y todo lo que le cuentes a un navegador de cuidado o nos escribas.',
-            'Información de salud. Al inscribirte en un programa recopilamos la información de salud necesaria para apoyar tu terapia: diagnóstico, tratamiento recetado, historial de dosis y recargas, respuestas a las llamadas de seguimiento y notas de las conversaciones con nuestro personal de enfermería y navegación.',
-            'Información que recibimos de terceros. Médicos, farmacias, planes de salud, patrocinadores de programas y fundaciones de asistencia pueden enviarnos información sobre tu inscripción, cobertura y estado de tu receta.',
-            'Información recopilada automáticamente. Cuando visitas nuestro sitio recopilamos dirección IP, tipo de navegador y dispositivo, páginas vistas, página de origen y marcas de tiempo de interacción mediante cookies y tecnologías similares.',
+            'Home Care Technologies, S.A.P.I. de C.V. (en lo sucesivo, “Contigo Care”), con domicilio en Valentín Gómez Farías 9, Colonia Altavista, Delegación Álvaro Obregón, Ciudad de México, México, CP 01060, es responsable del tratamiento y protección de los datos personales que recaba a través del sitio web contigo.care y de los canales de atención asociados al servicio.',
           ],
         },
         {
           num: '[02]',
-          title: 'Cómo usamos la información',
+          title: 'Datos personales que se recaban',
           body: [
-            'Para inscribirte en un programa y verificar tus beneficios, incluidas autorizaciones previas y comprobaciones de cobertura.',
-            'Para prestar los servicios del programa: recordatorios de recarga, llamadas de seguimiento, registro de dosis, navegación de cuidado y línea de enfermería.',
-            'Para evaluar y solicitar en tu nombre asistencia con copagos y programas de fundaciones.',
-            'Para comunicarnos contigo sobre tu programa, responder tus preguntas y brindarte apoyo bilingüe.',
-            'Para operar, proteger y mejorar nuestro sitio y servicios, y para generar reportes anonimizados o agregados para los patrocinadores del programa.',
-            'Para cumplir obligaciones legales, regulatorias y de reporte de eventos adversos.',
+            'Contigo Care podrá recabar, directa o indirectamente, los siguientes datos personales:',
+            [
+              'Nombre',
+              'Apellidos',
+              'Género',
+              'Fecha de nacimiento',
+              'Correo electrónico',
+              'Número telefónico',
+              'Dirección',
+              'Información de la póliza de seguro',
+              'Receta médica de tu tratamiento, así como la información que contiene',
+              'Información sobre tu tratamiento, tu condición y tu interacción con estos mismos, así como con tratamientos anteriores',
+              'Citas incluyendo fecha y hora',
+              'Información clínica directamente relacionada con el acompañamiento para tu tratamiento y seguimiento del mismo',
+              'Mensajes, consultas, solicitudes, comentarios y demás información que la persona titular proporcione durante la interacción',
+              'Datos técnicos de navegación y uso de la plataforma, cuando resulten necesarios para su operación, seguridad y mejora',
+            ],
+            'Asimismo, conforme a la información que la persona usuaria comparta, Contigo Care podrá recabar datos personales sensibles, particularmente datos relativos al estado de salud, síntomas, tratamientos, padecimientos, medicamentos, información clínica, datos de pacientes u otra información de salud.',
+            'Contigo Care solicita que no se proporcione información que no sea necesaria para la atención de la solicitud o interacción correspondiente.',
           ],
         },
         {
           num: '[03]',
-          title: 'Información de salud y HIPAA',
+          title: 'Finalidades del tratamiento',
           body: [
-            'En algunos programas actuamos como socio comercial (business associate) de una entidad cubierta bajo la Ley HIPAA. En esos casos manejamos la información de salud protegida conforme a un acuerdo de socio comercial, y el Aviso de Prácticas de Privacidad de la entidad cubierta rige tus derechos sobre esa información.',
-            'En programas patrocinados por un fabricante y no por un plan de salud o un profesional de salud, es posible que HIPAA no aplique. En esos programas manejamos tu información de salud conforme a esta política, a la autorización que firmas al inscribirte y a las leyes estatales de privacidad de salud aplicables.',
-            'No vendemos información de salud ni la usamos con fines publicitarios.',
+            'Los datos personales serán tratados para las siguientes finalidades primarias y necesarias:',
+            [
+              'Identificar y contactar a la persona usuaria',
+              'Recibir, gestionar, recordar y dar seguimiento a consultas, solicitudes, reportes o comunicaciones realizadas mediante la plataforma',
+              'Proporcionar el servicio de atención digital contratado por la farmacéutica cliente que corresponda',
+              'Gestionar y confirmar envíos',
+              'Canalizar la interacción a agentes humanos cuando sea necesario',
+              'Registrar, monitorear, asegurar la calidad y dar seguimiento a las conversaciones',
+              'Gestionar reportes de farmacovigilancia, calidad, seguridad u otras obligaciones vinculadas con productos farmacéuticos, cuando resulte aplicable',
+              'Prevenir, investigar y atender incidentes de seguridad, fraude, uso indebido o incumplimiento de los términos de uso',
+              'Cumplir obligaciones legales, regulatorias y contractuales aplicables',
+              'Atender solicitudes para el ejercicio de derechos ARCO',
+            ],
+            'Además, con su consentimiento cuando sea exigible, Contigo Care podrá tratar los datos para las siguientes finalidades secundarias:',
+            [
+              'Analizar patrones de uso e interacciones para mejorar la experiencia de atención',
+              'Evaluar, desarrollar, entrenar, ajustar, validar y mejorar los modelos, funcionalidades y herramientas de inteligencia artificial empleados en la plataforma',
+              'Elaborar métricas, análisis y estadísticas, procurando aplicar medidas de disociación o anonimización cuando proceda',
+            ],
+            'Si no desea que sus datos se traten para las finalidades secundarias, podrá manifestarlo enviando un correo a privacidad@contigo.care con el asunto “Negativa de finalidades secundarias”. La negativa no afectará la prestación de las finalidades primarias.',
           ],
         },
         {
           num: '[04]',
-          title: 'Con quién compartimos información',
+          title: 'Grabación de interacciones y uso de inteligencia artificial',
           body: [
-            'Con tu equipo de cuidado —médicos, farmacias y planes de salud— para coordinar tu terapia.',
-            'Con fundaciones de asistencia y administradores de programas de copago cuando solicitamos apoyo en tu nombre.',
-            'Con proveedores que trabajan para nosotros bajo contrato: alojamiento, comunicaciones, tecnología de centro de llamadas y analítica. Solo pueden usar tu información para prestarnos esos servicios.',
-            'Con los patrocinadores del programa, de forma anonimizada o agregada. Compartimos información que te identifica con un patrocinador únicamente si lo has autorizado o si la ley lo exige.',
-            'Cuando la ley lo requiere, o para reportar eventos adversos y quejas de producto a un fabricante o a una autoridad regulatoria.',
-            'En el contexto de una fusión, adquisición o venta de activos, sujeto a las protecciones de esta política.',
+            'Las conversaciones, llamadas, chats, mensajes y demás interacciones efectuadas a través de la plataforma podrán ser grabadas, registradas y almacenadas para las finalidades descritas en este aviso.',
+            'La atención podrá ser prestada total o parcialmente mediante sistemas de inteligencia artificial y podrá complementarse, revisarse o continuarse por personal humano autorizado. Los datos proporcionados durante las interacciones podrán ser analizados por tales sistemas para generar respuestas, clasificar solicitudes, apoyar la atención y mejorar el desempeño, calidad y seguridad del servicio.',
+            'Cuando el tratamiento involucre datos personales sensibles, Contigo Care solicitará el consentimiento expreso de la persona titular mediante los mecanismos habilitados en la plataforma o durante la interacción. Al otorgarlo, la persona titular reconoce que sus datos sensibles podrán ser tratados conforme a este aviso y exclusivamente para las finalidades aquí previstas.',
           ],
         },
         {
           num: '[05]',
-          title: 'Cookies y analítica',
+          title: 'Transferencias y remisiones de datos personales',
           body: [
-            'Nuestro sitio usa cookies y tecnologías similares para funcionar correctamente, recordar tu idioma y tu preferencia de tema, y entender cómo se usa el sitio. Puedes bloquear o borrar las cookies desde tu navegador; si lo haces, algunas partes del sitio pueden no funcionar como se espera.',
-            'Respetamos la señal Global Privacy Control y otras señales de exclusión del navegador cuando la ley aplicable lo exige.',
+            'Contigo Care podrá realizar remisiones y transferencias nacionales o internacionales de datos personales, incluyendo datos personales sensibles, a las siguientes categorías de destinatarios:',
+            [
+              'Farmacéuticas clientes para atender la consulta, solicitud, reporte o interacción vinculada con sus productos, servicios o programas',
+              'Proveedores tecnológicos, incluidos proveedores de alojamiento, infraestructura, almacenamiento, comunicaciones, ciberseguridad, analítica, soporte, herramientas de IA y procesamiento de información, que actúen por cuenta e instrucciones de Contigo Care o de la farmacéutica cliente',
+              'Empresas afiliadas, subsidiarias, controladoras o bajo control común, cuando resulte necesario para la operación y soporte del servicio',
+              'Autoridades competentes, cuando exista una obligación legal, regulatoria o requerimiento fundado aplicable',
+            ],
+            'Las transferencias que requieran consentimiento se realizarán únicamente cuando éste haya sido obtenido mediante los mecanismos habilitados. La persona titular podrá manifestar su negativa a las transferencias que requieran consentimiento enviando un correo a privacidad@contigo.care con el asunto “Negativa de transferencias”.',
+            'Los destinatarios de los datos estarán obligados a tratarlos de manera confidencial y conforme a las finalidades que justifican la remisión o transferencia, así como a aplicar medidas de seguridad y protección acordes con la naturaleza de la información.',
           ],
         },
         {
           num: '[06]',
-          title: 'Seguridad',
+          title: 'Derechos ARCO y revocación del consentimiento',
           body: [
-            'Aplicamos medidas administrativas, técnicas y físicas para proteger tu información, incluido el cifrado en tránsito y en reposo, controles de acceso por rol, capacitación del personal y registros de auditoría. Ningún método de transmisión o almacenamiento es completamente seguro, por lo que no podemos garantizar una seguridad absoluta.',
+            'La persona titular, o su representante legal, podrá ejercer sus derechos de Acceso, Rectificación, Cancelación u Oposición al tratamiento de sus datos personales (“derechos ARCO”), así como solicitar la revocación de su consentimiento, mediante una solicitud enviada a:',
+            ['Correo electrónico: privacidad@contigo.care', 'Teléfono: 55 6944 0696'],
+            'La solicitud deberá contener, al menos: nombre de la persona titular; medio para comunicar la respuesta; documentos que acrediten identidad o representación, cuando corresponda; descripción clara de los datos respecto de los cuales desea ejercer un derecho; el derecho que busca ejercer; y cualquier elemento que facilite la localización de los datos.',
+            'Contigo Care dará trámite a la solicitud en los plazos previstos por la legislación aplicable. La revocación del consentimiento no tendrá efectos retroactivos y podrá estar limitada cuando el tratamiento sea necesario para cumplir obligaciones legales, regulatorias, contractuales o de interés público aplicables.',
           ],
         },
         {
           num: '[07]',
-          title: 'Cuánto tiempo conservamos la información',
+          title: 'Limitación del uso o divulgación de datos personales',
           body: [
-            'Conservamos tu información mientras estés inscrito en un programa y después durante el período que exijan nuestros contratos, las reglas de retención de registros aplicables a servicios de salud y farmacéuticos, y la ley aplicable. Cuando la información deja de ser necesaria, la eliminamos o la anonimizamos.',
+            'La persona titular podrá solicitar la limitación del uso o divulgación de sus datos personales enviando un correo a privacidad@contigo.care con el asunto “Limitación de uso o divulgación”. Contigo Care registrará la solicitud y aplicará las medidas que resulten procedentes conforme a la naturaleza del tratamiento y las obligaciones aplicables.',
           ],
         },
         {
           num: '[08]',
-          title: 'Tus derechos y opciones',
+          title: 'Medidas de seguridad y conservación',
           body: [
-            'Según dónde vivas y en qué programa estés, puedes tener derecho a acceder, corregir, eliminar u obtener una copia de tu información; a saber qué recopilamos y compartimos; a retirar una autorización que hayas firmado; y a oponerte a ciertos usos. No vendemos información personal ni la compartimos para publicidad conductual entre contextos.',
-            'Puedes darte de baja del correo de marketing en cualquier momento con el enlace incluido en el mensaje. Las comunicaciones del programa y de seguridad relacionadas con tu terapia no son marketing y podrás seguir recibiéndolas mientras estés inscrito.',
-            'Para ejercer un derecho, contáctanos con los datos que aparecen abajo. Verificaremos tu identidad antes de atender la solicitud y no te trataremos de forma distinta por hacerla.',
+            'Contigo Care implementa medidas administrativas, técnicas y físicas razonables para proteger los datos personales contra daño, pérdida, alteración, destrucción, uso, acceso o tratamiento no autorizado.',
+            'Los datos personales serán conservados durante el tiempo necesario para cumplir las finalidades descritas, las obligaciones legales, regulatorias y contractuales aplicables, y los plazos de prescripción que correspondan. Posteriormente, Contigo Care los suprimirá, bloqueará, disociará o anonimizará, según resulte procedente.',
           ],
         },
         {
           num: '[09]',
-          title: 'Menores de edad',
+          title: 'Uso de tecnologías de rastreo',
           body: [
-            'Nuestro sitio no está dirigido a menores de 13 años y no recopilamos su información de forma consciente allí. Cuando un programa apoya a un paciente pediátrico, recopilamos su información del padre, madre o tutor legal que realiza la inscripción en su nombre.',
+            'El sitio puede utilizar cookies, píxeles, registros de servidor u otras tecnologías para reconocer preferencias, mantener la operación y seguridad del sitio, generar estadísticas y mejorar la experiencia de navegación. La persona usuaria puede configurar su navegador para limitar o deshabilitar dichas tecnologías; sin embargo, algunas funciones del sitio podrían verse afectadas.',
           ],
         },
         {
           num: '[10]',
-          title: 'Cambios a esta política',
+          title: 'Cambios al aviso de privacidad',
           body: [
-            'Podemos actualizar esta política conforme cambien nuestros programas y la ley. Publicaremos la versión revisada en esta página con una nueva fecha de «última actualización» y, cuando el cambio sea significativo, daremos aviso adicional antes de que entre en vigor.',
+            'Contigo Care podrá modificar o actualizar este aviso de privacidad para reflejar cambios legales, regulatorios, operativos o en sus prácticas de tratamiento. Las modificaciones estarán disponibles en contigo.care o en el medio que Contigo Care determine.',
           ],
         },
       ],
-      contactTitle: 'Contáctanos',
+      contactNum: '[11]',
+      contactTitle: 'Contacto',
       contactBody:
-        '¿Tienes preguntas sobre esta política o quieres ejercer un derecho de privacidad? Escribe a nuestro equipo de privacidad:',
+        'Para cualquier duda sobre este aviso de privacidad o sobre el tratamiento de datos personales, puede contactar a Contigo Care a través de:',
+      contactEmailLabel: '+ Correo',
+      contactPhoneLabel: '+ Teléfono',
+      contactAddressLabel: '+ Domicilio',
       backHome: 'Volver al inicio',
     },
   },

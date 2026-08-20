@@ -506,8 +506,41 @@
   margin-bottom: 0;
 }
 
+.legal__list {
+  font-size: 16px;
+  line-height: 1.68;
+  color: var(--muted);
+  max-width: 70ch;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.legal__list li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 6px;
+}
+
+.legal__list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  opacity: 0.5;
+}
+
+.legal__list li:last-child,
+.legal__list:last-child {
+  margin-bottom: 0;
+}
+
+/* Matches .legal__section so the contact row keeps the numbered gutter. */
 .legal__contact {
-  padding: 52px 0 0;
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 32px;
+  padding: 44px 0;
+  border-bottom: 1px solid var(--line);
 }
 
 .legal__contact h2 {
@@ -518,7 +551,7 @@
   margin: 0 0 16px;
 }
 
-.legal__contact > p {
+.legal__contact-body > p {
   font-size: 15px;
   line-height: 1.65;
   color: var(--muted);
@@ -546,12 +579,15 @@
 
 .legal__contact-list dt {
   margin: 0;
+  flex: 0 0 auto;
+  white-space: nowrap;
 }
 
 .legal__contact-list dd {
   margin: 0;
   color: var(--fg);
   text-align: right;
+  line-height: 1.5;
 }
 
 .legal__contact-list a {
@@ -647,7 +683,8 @@
     margin-top: 28px;
   }
 
-  .legal__section {
+  .legal__section,
+  .legal__contact {
     grid-template-columns: 1fr;
     gap: 12px;
     padding: 34px 0;
@@ -662,6 +699,16 @@
     border-top: 1px solid var(--line);
     padding-left: 0;
     padding-top: 22px;
+  }
+
+  /* Long address would squeeze the label against it on narrow screens. */
+  .legal__contact-list div {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .legal__contact-list dd {
+    text-align: left;
   }
 }
 
