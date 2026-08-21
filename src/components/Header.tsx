@@ -12,7 +12,7 @@ type HeaderProps = {
   onThemeToggle: () => void
 }
 
-const LANGS: Lang[] = ['en', 'es']
+const LANGS: Lang[] = ['es', 'en']
 
 function Header({ t, route, lang, onLangChange, theme, onThemeToggle }: HeaderProps) {
   const onHome = route === ROUTES.home

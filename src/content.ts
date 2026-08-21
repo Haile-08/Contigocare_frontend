@@ -48,8 +48,6 @@ export type Copy = {
   metaVal1: string
   metaKey2: string
   metaVal2: string
-  metaKey3: string
-  metaVal3: string
   marquee: string[]
   h2: string
   h2sub: string
@@ -79,18 +77,15 @@ export const COPY: Record<Lang, Copy> = {
     sub: 'Contigo Care runs patient support programs for therapies that need more than a prescription: enrollment, adherence coaching, and bilingual care navigation in one place.',
     ctaPrimary: 'Enroll a patient',
     ctaSecondary: 'Talk to our team',
-    metaKey1: 'Coverage',
-    metaVal1: 'All 50 states',
-    metaKey2: 'Languages',
-    metaVal2: 'EN / ES',
-    metaKey3: 'Care team',
-    metaVal3: 'Nurse-led',
+    metaKey1: 'Languages',
+    metaVal1: 'EN / ES',
+    metaKey2: 'Care team',
+    metaVal2: 'Nurse-led',
     marquee: [
       '94% enrollment completion',
       '24/7 nurse line',
       'Bilingual care navigators',
       'HIPAA compliant',
-      '180k patients supported',
     ],
     h2: 'Everything a patient needs to stay on therapy',
     h2sub: 'One coordinated program covering the moments where patients usually fall off.',
@@ -270,18 +265,15 @@ export const COPY: Record<Lang, Copy> = {
     sub: 'Contigo Care gestiona programas de apoyo para terapias que necesitan más que una receta: inscripción, acompañamiento en la adherencia y navegación de cuidado bilingüe en un solo lugar.',
     ctaPrimary: 'Inscribir un paciente',
     ctaSecondary: 'Hablar con el equipo',
-    metaKey1: 'Cobertura',
-    metaVal1: '50 estados',
-    metaKey2: 'Idiomas',
-    metaVal2: 'EN / ES',
-    metaKey3: 'Equipo',
-    metaVal3: 'Enfermería',
+    metaKey1: 'Idiomas',
+    metaVal1: 'EN / ES',
+    metaKey2: 'Equipo',
+    metaVal2: 'Enfermería',
     marquee: [
       '94% de inscripciones completadas',
       'Línea de enfermería 24/7',
       'Navegadores bilingües',
       'Cumple con HIPAA',
-      '180 mil pacientes atendidos',
     ],
     h2: 'Todo lo que un paciente necesita para seguir su terapia',
     h2sub: 'Un programa coordinado que cubre los momentos donde los pacientes suelen abandonar.',

@@ -7,6 +7,10 @@ It is written for someone who has never done this before. You can copy and
 paste every command. Words in `CAPITALS` are things you must replace with your
 own values.
 
+Everything here is done from the **DigitalOcean web console** — the terminal
+that opens in your browser. You do not need SSH, and you do not need anything
+installed on your own computer.
+
 ---
 
 ## What we are building
@@ -18,9 +22,9 @@ them to the browser.
 
 So the plan is simple:
 
-1. Build the site into a `dist` folder.
-2. Copy that folder to the server.
-3. Tell Nginx to serve it.
+1. Put the repository on the server.
+2. Build it there into a `dist` folder.
+3. Copy that folder to the place Nginx serves.
 4. Point the domain at the server and turn on HTTPS.
 
 **Nginx** is the web server. Think of it as a waiter: the browser asks for a
@@ -34,8 +38,7 @@ You need:
 
 - A DigitalOcean account.
 - The domain `contigo.care`, and access to wherever its DNS is managed.
-- A terminal on your computer (Terminal on Mac/Linux, PowerShell on Windows).
-- Node.js 20 or newer on your computer, to build the site.
+- Access to the code — either the GitHub repository, or a copy you can upload.
 
 ---
 
@@ -48,8 +51,8 @@ A "Droplet" is DigitalOcean's name for a virtual server.
 3. **Image**: choose **Ubuntu 24.04 (LTS) x64**.
 4. **Size**: the cheapest Basic / Regular option is enough for a landing page
    (1 GB RAM). You can grow later.
-5. **Authentication**: choose **SSH Key** and add yours. This is safer than a
-   password. If you do not have one, DigitalOcean shows you how to make it.
+5. **Authentication**: choose **Password** and set a strong root password. Save
+   it somewhere safe — the web console may ask for it.
 6. **Hostname**: something like `contigocare-web`.
 7. Click **Create Droplet**.
 
@@ -59,28 +62,27 @@ that number.
 
 ---
 
-## Step 2 — Connect to the server
+## Step 2 — Open the web console
 
-In your terminal:
+In DigitalOcean, open your Droplet and click **Console** (also called *Launch
+Droplet Console*). A black terminal window opens in your browser and logs you
+in as `root`.
 
-```bash
-ssh root@YOUR_SERVER_IP
-```
+If it asks for a login, type `root` and the password you set in Step 1.
 
-The first time it asks "Are you sure you want to continue connecting?" — type
-`yes`.
+Everything from here on is typed **in that console window**, on the server.
 
-You are now typing commands **on the server**, not on your computer. Keep this
-in mind for the rest of the guide; I will say clearly when to switch back.
+> Copy and paste in the console: `Ctrl+Shift+V` usually works. If it does not,
+> DigitalOcean's console has a paste button in its toolbar.
 
 ---
 
 ## Step 3 — Update the server and install Nginx
 
 ```bash
-sudo apt update
-sudo apt upgrade -y
-sudo apt install nginx -y
+apt update
+apt upgrade -y
+apt install nginx -y
 ```
 
 - `apt update` refreshes the list of available software.
@@ -101,24 +103,47 @@ Now open `http://YOUR_SERVER_IP` in your browser. You should see the default
 
 ---
 
-## Step 4 — Turn on the firewall
+## Step 4 — Install Node.js and Git
+
+The site is built **on the server**, so the server needs Node.js. Ubuntu's own
+version is too old, so we install Node.js 20 from NodeSource:
+
+```bash
+apt install git curl -y
+curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+apt install nodejs -y
+```
+
+Check both are there:
+
+```bash
+node -v
+npm -v
+```
+
+`node -v` should print `v20.something`.
+
+---
+
+## Step 5 — Turn on the firewall
 
 The firewall blocks every door into the server except the ones we open.
 
 ```bash
-sudo ufw allow OpenSSH
-sudo ufw allow 'Nginx Full'
-sudo ufw enable
-sudo ufw status
+ufw allow OpenSSH
+ufw allow 'Nginx Full'
+ufw enable
+ufw status
 ```
 
-- `OpenSSH` keeps your terminal connection working. **Do not skip it** or you
-  will lock yourself out.
 - `Nginx Full` opens port 80 (HTTP) and port 443 (HTTPS).
+- `OpenSSH` keeps port 22 open in case you ever want to connect without the web
+  console. The DigitalOcean console keeps working either way — it does not go
+  through the firewall.
 
 ---
 
-## Step 5 — Point the domain at the server
+## Step 6 — Point the domain at the server
 
 This happens in your DNS provider (DigitalOcean's own **Networking → Domains**
 panel, or wherever `contigo.care` is registered).
@@ -146,81 +171,101 @@ your server.
 
 ---
 
-## Step 6 — Build the site on your computer
+## Step 7 — Put the repository on the server
 
-Switch back to **your own computer**, in the project folder:
+We keep the code in `/opt/contigocare` and build it there.
 
 ```bash
+mkdir -p /opt
+cd /opt
+git clone https://github.com/Haile-08/Contigocare_frontend.git contigocare
+cd contigocare
+```
+
+If the repository is **private**, GitHub asks for a username and password. The
+password is not your account password — it is a **personal access token**
+(GitHub → Settings → Developer settings → Personal access tokens). Create one
+with `repo` read access and paste it when asked.
+
+**If you would rather not use Git**, upload a ZIP of the project instead:
+
+1. On your computer, zip the project folder (without `node_modules` and `dist`).
+2. Put the ZIP somewhere the server can download it (a Google Drive / Dropbox
+   direct link, or DigitalOcean Spaces).
+3. On the server:
+
+   ```bash
+   apt install unzip -y
+   mkdir -p /opt/contigocare
+   cd /opt/contigocare
+   curl -L "YOUR_ZIP_URL" -o site.zip
+   unzip site.zip
+   ```
+
+Either way, you should end up with `package.json` inside `/opt/contigocare`.
+Check with:
+
+```bash
+ls /opt/contigocare
+```
+
+---
+
+## Step 8 — Build the site on the server
+
+Still in the console:
+
+```bash
+cd /opt/contigocare
 npm install
 npm run build
 ```
 
-This creates a `dist` folder. Inside you will find `index.html`, an `assets`
-folder with the JavaScript and CSS, and the images. That folder is the entire
-website.
+`npm install` downloads the libraries the project needs (this takes a couple of
+minutes the first time). `npm run build` creates a `dist` folder containing
+`index.html`, an `assets` folder with the JavaScript and CSS, and the images.
+That folder is the entire website.
 
-You can preview it locally first if you want:
+If the build runs out of memory on a 1 GB Droplet, give it some swap space
+once:
 
 ```bash
-npm run preview
+fallocate -l 2G /swapfile
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+echo '/swapfile none swap sw 0 0' >> /etc/fstab
 ```
+
+Then run `npm run build` again.
 
 ---
 
-## Step 7 — Create the folder on the server
+## Step 9 — Publish the built files
 
-Back in the **server** terminal:
+Nginx serves files from `/var/www/`, so we copy the build there:
 
 ```bash
 mkdir -p /var/www/contigo.care
+cp -r /opt/contigocare/dist/* /var/www/contigo.care/
 ```
 
-`/var/www/` is the normal place to keep websites on Ubuntu. This folder is
-where the built site will land in the next step.
+`/var/www/` is the normal place to keep websites on Ubuntu. We copy the
+**contents** of `dist` (note the `/*`), not the folder itself.
 
 ---
 
-## Step 8 — Upload the built files
+## Step 10 — Install the Nginx config
 
-On **your computer**, from the project folder:
+The config file is already on the server — it came with the repository, at
+`/opt/contigocare/deploy/nginx/contigo.care.conf`.
 
-```bash
-rsync -avz --delete dist/ root@YOUR_SERVER_IP:/var/www/contigo.care/
-```
-
-What the parts mean:
-
-- `dist/` — the trailing slash matters. It means "the contents of dist", not
-  the folder itself.
-- `--delete` — removes old files on the server that no longer exist in your
-  build. This keeps things clean between deploys.
-- `-avz` — copy everything, keep permissions, compress during transfer.
-
-If you are on Windows without `rsync`, use `scp` instead:
+Put it in place:
 
 ```bash
-scp -r dist/* root@YOUR_SERVER_IP:/var/www/contigo.care/
-```
-
----
-
-## Step 9 — Install the Nginx config
-
-The config file lives in this repo at
-[deploy/nginx/contigo.care.conf](deploy/nginx/contigo.care.conf).
-
-Copy it to the server from **your computer**:
-
-```bash
-scp deploy/nginx/contigo.care.conf root@YOUR_SERVER_IP:/tmp/
-```
-
-Then on the **server**, put it in place:
-
-```bash
-sudo mv /tmp/contigo.care.conf /etc/nginx/sites-available/contigo.care
-sudo ln -s /etc/nginx/sites-available/contigo.care /etc/nginx/sites-enabled/
-sudo rm /etc/nginx/sites-enabled/default
+cp /opt/contigocare/deploy/nginx/contigo.care.conf /etc/nginx/sites-available/contigo.care
+ln -s /etc/nginx/sites-available/contigo.care /etc/nginx/sites-enabled/
+rm /etc/nginx/sites-enabled/default
 ```
 
 What is happening here:
@@ -233,8 +278,8 @@ What is happening here:
 Test the config for typos, then reload:
 
 ```bash
-sudo nginx -t
-sudo systemctl reload nginx
+nginx -t
+systemctl reload nginx
 ```
 
 `nginx -t` should say **syntax is ok** and **test is successful**. If it shows
@@ -245,13 +290,13 @@ Now open `http://contigo.care`. Your landing page should be there.
 
 ---
 
-## Step 10 — Turn on HTTPS (the padlock)
+## Step 11 — Turn on HTTPS (the padlock)
 
 We use **Certbot** with **Let's Encrypt**, which gives free certificates.
 
 ```bash
-sudo apt install certbot python3-certbot-nginx -y
-sudo certbot --nginx -d contigo.care -d www.contigo.care
+apt install certbot python3-certbot-nginx -y
+certbot --nginx -d contigo.care -d www.contigo.care
 ```
 
 Certbot will ask you:
@@ -270,12 +315,12 @@ Certificates last 90 days and renew themselves. You can confirm the automatic
 renewal works with:
 
 ```bash
-sudo certbot renew --dry-run
+certbot renew --dry-run
 ```
 
 ---
 
-## Step 11 — Check the privacy page
+## Step 12 — Check the privacy page
 
 This site uses client side routing, so it has two addresses:
 
@@ -300,51 +345,69 @@ see a 404 on `/privacidad`, this line is missing or wrong.
 
 ## Deploying updates later
 
-Once everything above is done, publishing a change is just two commands from
-your computer:
+Once everything above is done, publishing a change is four commands in the web
+console:
 
 ```bash
+cd /opt/contigocare
+git pull
 npm run build
-rsync -avz --delete dist/ root@YOUR_SERVER_IP:/var/www/contigo.care/
+rm -rf /var/www/contigo.care/* && cp -r dist/* /var/www/contigo.care/
 ```
+
+The `rm -rf` clears out old files so nothing stale is left behind from the
+previous build.
 
 You do not need to restart or reload Nginx — it reads the files fresh each
 time. You only reload Nginx when you change the **config** file.
 
+If you uploaded a ZIP instead of using Git, replace `git pull` with uploading
+and unzipping the new ZIP the same way as in Step 7.
+
 ### Optional: a one-command deploy script
 
-Create a file called `deploy.sh` in the project root:
+Create the script once, on the server:
+
+```bash
+nano /usr/local/bin/deploy-contigo
+```
+
+Paste this in:
 
 ```bash
 #!/usr/bin/env bash
 set -e
 
-SERVER="root@YOUR_SERVER_IP"
-TARGET="/var/www/contigo.care/"
+cd /opt/contigocare
+
+echo "Getting latest code..."
+git pull
 
 echo "Building..."
+npm install
 npm run build
 
-echo "Uploading..."
-rsync -avz --delete dist/ "$SERVER:$TARGET"
+echo "Publishing..."
+rm -rf /var/www/contigo.care/*
+cp -r dist/* /var/www/contigo.care/
 
 echo "Done: https://contigo.care"
 ```
 
-Make it runnable once:
+Save with `Ctrl+O`, `Enter`, then exit with `Ctrl+X`. Make it runnable once:
 
 ```bash
-chmod +x deploy.sh
+chmod +x /usr/local/bin/deploy-contigo
 ```
 
 After that, every deploy is just:
 
 ```bash
-./deploy.sh
+deploy-contigo
 ```
 
 `set -e` means the script stops immediately if the build fails, so a broken
-build never gets uploaded.
+build never gets published.
 
 ---
 
@@ -356,24 +419,28 @@ build never gets uploaded.
 systemctl status nginx
 ```
 
-If it is not running, start it: `sudo systemctl start nginx`.
+If it is not running, start it: `systemctl start nginx`.
 
 **I see "Welcome to nginx!" instead of my site**
 
-The default site is still enabled. Run
-`sudo rm /etc/nginx/sites-enabled/default` and reload.
+The default site is still enabled. Run `rm /etc/nginx/sites-enabled/default`
+and reload.
 
 **403 Forbidden**
 
 Nginx cannot read the files. Fix the permissions:
 
 ```bash
-sudo chmod -R 755 /var/www/contigo.care
+chmod -R 755 /var/www/contigo.care
 ```
 
 **404 on /privacidad**
 
-The `try_files` line is missing. See Step 11.
+The `try_files` line is missing. See Step 12.
+
+**`npm run build` is killed / runs out of memory**
+
+Add swap space — see the block at the end of Step 8.
 
 **I deployed but still see the old site**
 
@@ -384,14 +451,14 @@ should only affect you, not new visitors.
 **Certbot fails**
 
 Almost always DNS. Check `dig +short contigo.care` returns your server IP, and
-that port 80 is open (`sudo ufw status`).
+that port 80 is open (`ufw status`).
 
 **Read the error log**
 
 This is the most useful command when you are stuck:
 
 ```bash
-sudo tail -n 50 /var/log/nginx/contigo.care.error.log
+tail -n 50 /var/log/nginx/contigo.care.error.log
 ```
 
 ---
@@ -400,21 +467,23 @@ sudo tail -n 50 /var/log/nginx/contigo.care.error.log
 
 | What you want | Command |
 |---|---|
-| Connect to the server | `ssh root@YOUR_SERVER_IP` |
-| Test the Nginx config | `sudo nginx -t` |
-| Apply a config change | `sudo systemctl reload nginx` |
-| Restart Nginx | `sudo systemctl restart nginx` |
-| See errors | `sudo tail -f /var/log/nginx/contigo.care.error.log` |
-| See visits | `sudo tail -f /var/log/nginx/contigo.care.access.log` |
+| Connect to the server | DigitalOcean → your Droplet → **Console** |
+| Go to the code | `cd /opt/contigocare` |
 | Build the site | `npm run build` |
-| Deploy | `rsync -avz --delete dist/ root@YOUR_SERVER_IP:/var/www/contigo.care/` |
-| Renew certificate manually | `sudo certbot renew` |
+| Deploy | `deploy-contigo` (or the four commands above) |
+| Test the Nginx config | `nginx -t` |
+| Apply a config change | `systemctl reload nginx` |
+| Restart Nginx | `systemctl restart nginx` |
+| See errors | `tail -f /var/log/nginx/contigo.care.error.log` |
+| See visits | `tail -f /var/log/nginx/contigo.care.access.log` |
+| Renew certificate manually | `certbot renew` |
 
 **Important paths on the server**
 
 | Path | What it is |
 |---|---|
-| `/var/www/contigo.care/` | The website files |
+| `/opt/contigocare/` | The repository (source code) |
+| `/var/www/contigo.care/` | The website files that are served |
 | `/etc/nginx/sites-available/contigo.care` | The config you edit |
 | `/etc/nginx/sites-enabled/contigo.care` | The shortcut that switches it on |
 | `/var/log/nginx/` | The logs |

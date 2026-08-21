@@ -9,7 +9,6 @@ function Hero({ t }: HeroProps) {
   const meta = [
     [t.metaKey1, t.metaVal1],
     [t.metaKey2, t.metaVal2],
-    [t.metaKey3, t.metaVal3],
   ]
 
   return (

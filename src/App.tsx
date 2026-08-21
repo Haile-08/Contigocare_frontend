@@ -9,7 +9,7 @@ import './styles/landing.css'
 
 function App() {
   const [theme, setTheme] = useState<Theme>('light')
-  const [lang, setLang] = useState<Lang>('en')
+  const [lang, setLang] = useState<Lang>('es')
   const route = useRoute()
 
   useEffect(() => {
@@ -26,7 +26,7 @@ function App() {
     document.title =
       route === ROUTES.privacy
         ? `${t.privacy.title} — Contigo Care`
-        : 'Contigo Care — Patient support programs'
+        : `Contigo Care — ${t.eyebrow}`
   }, [route, t])
 
   useEffect(() => {
