@@ -62,7 +62,7 @@ export const PRIVACY_CONTACT = {
   email: 'privacidad@contigo.care',
   phone: '55 6944 0696',
   address:
-    'Valentín Gómez Farías 9, Colonia Altavista, Álvaro Obregón, Ciudad de México, México, CP 01060',
+    'Valentín Gómez Farías 9, Colonia Altavista, Alcaldía Álvaro Obregón, Ciudad de México, México, CP 01060',
 } as const
 
 export const COPY: Record<Lang, Copy> = {
@@ -126,7 +126,7 @@ export const COPY: Record<Lang, Copy> = {
           num: '[01]',
           title: 'Identity and address of the data controller',
           body: [
-            'Home Care Technologies, S.A.P.I. de C.V. (hereinafter, “Contigo Care”), with address at Valentín Gómez Farías 9, Colonia Altavista, Álvaro Obregón, Mexico City, Mexico, CP 01060, is responsible for the processing and protection of the personal data it collects through the contigo.care website and the support channels associated with the service.',
+            'Home Care Technologies, S.A.P.I. de C.V. (hereinafter, “Contigo Care”), with address at Valentín Gómez Farías 9, Colonia Altavista, Alcaldía Álvaro Obregón, Mexico City, Mexico, CP 01060, is responsible for the processing and protection of the personal data it collects through the contigo.care website and the support channels associated with the service.',
           ],
         },
         {
@@ -147,7 +147,7 @@ export const COPY: Record<Lang, Copy> = {
               'Information about your treatment, your condition and your interaction with them, as well as with previous treatments',
               'Appointments, including date and time',
               'Clinical information directly related to the support and follow-up of your treatment',
-              'Messages, queries, requests, comments and any other information the data subject provides during the interaction',
+              'Messages, queries, requests, comments, voice recordings, transcripts and any other information the data subject provides during the interaction',
               'Technical data about browsing and use of the platform, where necessary for its operation, security and improvement',
             ],
             'Likewise, based on the information the user shares, Contigo Care may collect sensitive personal data, in particular data relating to health status, symptoms, treatments, conditions, medications, clinical information, patient data or other health information.',
@@ -165,16 +165,16 @@ export const COPY: Record<Lang, Copy> = {
               'Provide the digital care service contracted by the corresponding pharmaceutical client',
               'Manage and confirm shipments',
               'Route the interaction to human agents when necessary',
-              'Record, monitor, assure the quality of and follow up on conversations',
+              'Record, log, transcribe, store, monitor, assure the quality of and follow up on conversations and interactions',
               'Manage pharmacovigilance, quality, safety or other reports linked to pharmaceutical products, where applicable',
               'Prevent, investigate and respond to security incidents, fraud, misuse or breaches of the terms of use',
               'Comply with applicable legal, regulatory and contractual obligations',
               'Handle requests to exercise ARCO rights',
             ],
-            'In addition, with your consent where required, Contigo Care may process the data for the following secondary purposes:',
+            'In addition, with your consent where required, Contigo Care may process personal data, including recordings, transcripts, conversations, calls, chats, messages and other interactions, for the following secondary purposes:',
             [
               'Analyze usage patterns and interactions in order to improve the care experience',
-              'Evaluate, develop, train, tune, validate and improve the artificial intelligence models, features and tools used on the platform',
+              'Evaluate, develop, train, tune, validate and improve the artificial intelligence models, features and tools used on the platform, including through the analysis of recordings, transcripts and other conversation content',
               'Produce metrics, analysis and statistics, seeking to apply dissociation or anonymization measures where appropriate',
             ],
             'If you do not want your data processed for the secondary purposes, you may say so by emailing privacidad@contigo.care with the subject line “Negativa de finalidades secundarias”. Refusing will not affect the delivery of the primary purposes.',
@@ -182,9 +182,10 @@ export const COPY: Record<Lang, Copy> = {
         },
         {
           num: '[04]',
-          title: 'Recording of interactions and use of artificial intelligence',
+          title: 'Recording, storage and use of conversations through artificial intelligence',
           body: [
-            'Conversations, calls, chats, messages and other interactions carried out through the platform may be recorded, logged and stored for the purposes described in this notice.',
+            'Conversations, calls, chats, messages and other interactions carried out through the platform may be recorded, logged, transcribed and stored. Those records may include the personal data and, where applicable, the sensitive personal data the data subject provides during the interaction.',
+            'Recordings, transcripts and other records of interactions will be used for the primary purposes described in this notice and, where applicable and where the required consent has been obtained, to analyze, develop, train, tune, validate and improve the artificial intelligence models, features and tools used on the platform.',
             'Care may be provided in whole or in part through artificial intelligence systems, and may be complemented, reviewed or continued by authorized human staff. Data provided during interactions may be analyzed by such systems to generate responses, classify requests, support care and improve the performance, quality and security of the service.',
             'Where processing involves sensitive personal data, Contigo Care will request the data subject’s express consent through the mechanisms enabled on the platform or during the interaction. By granting it, the data subject acknowledges that their sensitive data may be processed in accordance with this notice and exclusively for the purposes set out here.',
           ],
@@ -193,10 +194,10 @@ export const COPY: Record<Lang, Copy> = {
           num: '[05]',
           title: 'Transfers and remittances of personal data',
           body: [
-            'Contigo Care may carry out national or international remittances and transfers of personal data, including sensitive personal data, to the following categories of recipients:',
+            'Contigo Care may carry out national or international remittances and transfers of personal data, including sensitive personal data and records of interactions such as recordings, transcripts, conversations, calls, chats and messages, to the following categories of recipients:',
             [
-              'Pharmaceutical clients, in order to handle the query, request, report or interaction linked to their products, services or programs',
-              'Technology providers, including providers of hosting, infrastructure, storage, communications, cybersecurity, analytics, support, AI tools and information processing, acting on behalf of and under the instructions of Contigo Care or of the pharmaceutical client',
+              'Pharmaceutical clients, in order to handle the query, request, report or interaction linked to their products, services or programs, as well as to follow up on care, pharmacovigilance, quality, safety and any other applicable purposes',
+              'Technology service providers, including providers of hosting, infrastructure, storage, communications, cybersecurity, analytics, support, Artificial Intelligence tools and information processing, acting on behalf of and under the instructions of Contigo Care or of the pharmaceutical client, for the operation, maintenance, support, security and improvement of the service and of the artificial intelligence models used on the platform',
               'Affiliated companies, subsidiaries, parent companies or companies under common control, where necessary for the operation and support of the service',
               'Competent authorities, where there is an applicable legal or regulatory obligation or a well-founded request',
             ],
@@ -226,7 +227,7 @@ export const COPY: Record<Lang, Copy> = {
           title: 'Security and retention measures',
           body: [
             'Contigo Care implements reasonable administrative, technical and physical measures to protect personal data against damage, loss, alteration, destruction, and unauthorized use, access or processing.',
-            'Personal data will be retained for as long as necessary to fulfil the purposes described, the applicable legal, regulatory and contractual obligations, and the corresponding limitation periods. Afterwards, Contigo Care will delete, block, dissociate or anonymize it, as appropriate.',
+            'Personal data, including recordings, transcripts and other records of interactions, will be retained for as long as necessary to fulfil the purposes described, the applicable legal, regulatory and contractual obligations, and the corresponding limitation periods. Afterwards, Contigo Care will delete, block, dissociate or anonymize it, as appropriate.',
           ],
         },
         {
@@ -314,7 +315,7 @@ export const COPY: Record<Lang, Copy> = {
           num: '[01]',
           title: 'Identidad y domicilio del responsable',
           body: [
-            'Home Care Technologies, S.A.P.I. de C.V. (en lo sucesivo, “Contigo Care”), con domicilio en Valentín Gómez Farías 9, Colonia Altavista, Delegación Álvaro Obregón, Ciudad de México, México, CP 01060, es responsable del tratamiento y protección de los datos personales que recaba a través del sitio web contigo.care y de los canales de atención asociados al servicio.',
+            'Home Care Technologies, S.A.P.I. de C.V. (en lo sucesivo, “Contigo Care”), con domicilio en Valentín Gómez Farías 9, Colonia Altavista, Alcaldía Álvaro Obregón, Ciudad de México, México, CP 01060, es responsable del tratamiento y protección de los datos personales que recaba a través del sitio web contigo.care y de los canales de atención asociados al servicio.',
           ],
         },
         {
@@ -335,7 +336,7 @@ export const COPY: Record<Lang, Copy> = {
               'Información sobre tu tratamiento, tu condición y tu interacción con estos mismos, así como con tratamientos anteriores',
               'Citas incluyendo fecha y hora',
               'Información clínica directamente relacionada con el acompañamiento para tu tratamiento y seguimiento del mismo',
-              'Mensajes, consultas, solicitudes, comentarios y demás información que la persona titular proporcione durante la interacción',
+              'Mensajes, consultas, solicitudes, comentarios, grabaciones de voz, transcripciones y demás información que la persona titular proporcione durante la interacción',
               'Datos técnicos de navegación y uso de la plataforma, cuando resulten necesarios para su operación, seguridad y mejora',
             ],
             'Asimismo, conforme a la información que la persona usuaria comparta, Contigo Care podrá recabar datos personales sensibles, particularmente datos relativos al estado de salud, síntomas, tratamientos, padecimientos, medicamentos, información clínica, datos de pacientes u otra información de salud.',
@@ -353,16 +354,16 @@ export const COPY: Record<Lang, Copy> = {
               'Proporcionar el servicio de atención digital contratado por la farmacéutica cliente que corresponda',
               'Gestionar y confirmar envíos',
               'Canalizar la interacción a agentes humanos cuando sea necesario',
-              'Registrar, monitorear, asegurar la calidad y dar seguimiento a las conversaciones',
+              'Grabar, registrar, transcribir, almacenar, monitorear, asegurar la calidad y dar seguimiento a las conversaciones e interacciones',
               'Gestionar reportes de farmacovigilancia, calidad, seguridad u otras obligaciones vinculadas con productos farmacéuticos, cuando resulte aplicable',
               'Prevenir, investigar y atender incidentes de seguridad, fraude, uso indebido o incumplimiento de los términos de uso',
               'Cumplir obligaciones legales, regulatorias y contractuales aplicables',
               'Atender solicitudes para el ejercicio de derechos ARCO',
             ],
-            'Además, con su consentimiento cuando sea exigible, Contigo Care podrá tratar los datos para las siguientes finalidades secundarias:',
+            'Además, con su consentimiento cuando sea exigible, Contigo Care podrá tratar los datos personales, incluidas las grabaciones, transcripciones, conversaciones, llamadas, chats, mensajes y demás interacciones, para las siguientes finalidades secundarias:',
             [
               'Analizar patrones de uso e interacciones para mejorar la experiencia de atención',
-              'Evaluar, desarrollar, entrenar, ajustar, validar y mejorar los modelos, funcionalidades y herramientas de inteligencia artificial empleados en la plataforma',
+              'Evaluar, desarrollar, entrenar, ajustar, validar y mejorar los modelos, funcionalidades y herramientas de inteligencia artificial empleados en la plataforma, incluso mediante el análisis de grabaciones, transcripciones y demás contenidos de las conversaciones',
               'Elaborar métricas, análisis y estadísticas, procurando aplicar medidas de disociación o anonimización cuando proceda',
             ],
             'Si no desea que sus datos se traten para las finalidades secundarias, podrá manifestarlo enviando un correo a privacidad@contigo.care con el asunto “Negativa de finalidades secundarias”. La negativa no afectará la prestación de las finalidades primarias.',
@@ -370,9 +371,10 @@ export const COPY: Record<Lang, Copy> = {
         },
         {
           num: '[04]',
-          title: 'Grabación de interacciones y uso de inteligencia artificial',
+          title: 'Grabación, almacenamiento y uso de conversaciones mediante inteligencia artificial',
           body: [
-            'Las conversaciones, llamadas, chats, mensajes y demás interacciones efectuadas a través de la plataforma podrán ser grabadas, registradas y almacenadas para las finalidades descritas en este aviso.',
+            'Las conversaciones, llamadas, chats, mensajes y demás interacciones efectuadas a través de la plataforma podrán ser grabadas, registradas, transcritas y almacenadas. Dichos registros podrán incluir los datos personales y, en su caso, los datos personales sensibles que la persona titular proporcione durante la interacción.',
+            'Las grabaciones, transcripciones y demás registros de las interacciones serán utilizados para las finalidades primarias descritas en este aviso y, cuando corresponda y se cuente con el consentimiento exigible, para analizar, desarrollar, entrenar, ajustar, validar y mejorar los modelos, funcionalidades y herramientas de inteligencia artificial utilizados en la plataforma.',
             'La atención podrá ser prestada total o parcialmente mediante sistemas de inteligencia artificial y podrá complementarse, revisarse o continuarse por personal humano autorizado. Los datos proporcionados durante las interacciones podrán ser analizados por tales sistemas para generar respuestas, clasificar solicitudes, apoyar la atención y mejorar el desempeño, calidad y seguridad del servicio.',
             'Cuando el tratamiento involucre datos personales sensibles, Contigo Care solicitará el consentimiento expreso de la persona titular mediante los mecanismos habilitados en la plataforma o durante la interacción. Al otorgarlo, la persona titular reconoce que sus datos sensibles podrán ser tratados conforme a este aviso y exclusivamente para las finalidades aquí previstas.',
           ],
@@ -381,10 +383,10 @@ export const COPY: Record<Lang, Copy> = {
           num: '[05]',
           title: 'Transferencias y remisiones de datos personales',
           body: [
-            'Contigo Care podrá realizar remisiones y transferencias nacionales o internacionales de datos personales, incluyendo datos personales sensibles, a las siguientes categorías de destinatarios:',
+            'Contigo Care podrá realizar remisiones y transferencias nacionales o internacionales de datos personales, incluyendo datos personales sensibles y registros de las interacciones, tales como grabaciones, transcripciones, conversaciones, llamadas, chats y mensajes, a las siguientes categorías de destinatarios:',
             [
-              'Farmacéuticas clientes para atender la consulta, solicitud, reporte o interacción vinculada con sus productos, servicios o programas',
-              'Proveedores tecnológicos, incluidos proveedores de alojamiento, infraestructura, almacenamiento, comunicaciones, ciberseguridad, analítica, soporte, herramientas de IA y procesamiento de información, que actúen por cuenta e instrucciones de Contigo Care o de la farmacéutica cliente',
+              'Farmacéuticas clientes para atender la consulta, solicitud, reporte o interacción vinculada con sus productos, servicios o programas, así como para dar seguimiento a la atención, farmacovigilancia, calidad, seguridad y demás finalidades que correspondan',
+              'Proveedores de servicios tecnológicos, incluidos proveedores de alojamiento, infraestructura, almacenamiento, comunicaciones, ciberseguridad, analítica, soporte, herramientas de Inteligencia Artificial y procesamiento de información, que actúen por cuenta e instrucciones de Contigo Care o de la farmacéutica cliente, para la operación, mantenimiento, soporte, seguridad y mejora del servicio y de los modelos de inteligencia artificial empleados en la plataforma',
               'Empresas afiliadas, subsidiarias, controladoras o bajo control común, cuando resulte necesario para la operación y soporte del servicio',
               'Autoridades competentes, cuando exista una obligación legal, regulatoria o requerimiento fundado aplicable',
             ],
@@ -414,7 +416,7 @@ export const COPY: Record<Lang, Copy> = {
           title: 'Medidas de seguridad y conservación',
           body: [
             'Contigo Care implementa medidas administrativas, técnicas y físicas razonables para proteger los datos personales contra daño, pérdida, alteración, destrucción, uso, acceso o tratamiento no autorizado.',
-            'Los datos personales serán conservados durante el tiempo necesario para cumplir las finalidades descritas, las obligaciones legales, regulatorias y contractuales aplicables, y los plazos de prescripción que correspondan. Posteriormente, Contigo Care los suprimirá, bloqueará, disociará o anonimizará, según resulte procedente.',
+            'Los datos personales, incluidas las grabaciones, transcripciones y demás registros de interacciones, serán conservados durante el tiempo necesario para cumplir las finalidades descritas, las obligaciones legales, regulatorias y contractuales aplicables, y los plazos de prescripción que correspondan. Posteriormente, Contigo Care los suprimirá, bloqueará, disociará o anonimizará, según resulte procedente.',
           ],
         },
         {
