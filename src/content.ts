@@ -59,7 +59,7 @@ export type Copy = {
 
 /** From the Aviso de Privacidad Integral — these appear verbatim on /privacidad. */
 export const PRIVACY_CONTACT = {
-  email: 'privacidad@contigo.care',
+  email: 'privacidad@karai.health',
   phone: '55 6944 0696',
   address:
     'Valentín Gómez Farías 9, Colonia Altavista, Alcaldía Álvaro Obregón, Ciudad de México, México, CP 01060',
@@ -74,7 +74,7 @@ export const COPY: Record<Lang, Copy> = {
     eyebrow: 'Patient support programs',
     h1a: 'Care that stays with you, from',
     h1b: 'first dose onward',
-    sub: 'Contigo Care runs patient support programs for therapies that need more than a prescription: enrollment, adherence coaching, and bilingual care navigation in one place.',
+    sub: 'karai.health runs patient support programs for therapies that need more than a prescription: enrollment, adherence coaching, and bilingual care navigation in one place.',
     ctaPrimary: 'Enroll a patient',
     ctaSecondary: 'Talk to our team',
     metaKey1: 'Languages',
@@ -120,20 +120,20 @@ export const COPY: Record<Lang, Copy> = {
       updatedLabel: 'Last updated',
       updated: 'August 20, 2026',
       intro:
-        'Contigo Care operates a digital care platform for the pharmaceutical industry that combines artificial intelligence tools with care and supervision by human staff.',
+        'karai.health operates a digital care platform for the pharmaceutical industry that combines artificial intelligence tools with care and supervision by human staff.',
       sections: [
         {
           num: '[01]',
           title: 'Identity and address of the data controller',
           body: [
-            'Home Care Technologies, S.A.P.I. de C.V. (hereinafter, “Contigo Care”), with address at Valentín Gómez Farías 9, Colonia Altavista, Alcaldía Álvaro Obregón, Mexico City, Mexico, CP 01060, is responsible for the processing and protection of the personal data it collects through the contigo.care website and the support channels associated with the service.',
+            'Home Care Technologies, S.A.P.I. de C.V. (hereinafter, “karai.health”), with address at Valentín Gómez Farías 9, Colonia Altavista, Alcaldía Álvaro Obregón, Mexico City, Mexico, CP 01060, is responsible for the processing and protection of the personal data it collects through the karai.health website and the support channels associated with the service.',
           ],
         },
         {
           num: '[02]',
           title: 'Personal data we collect',
           body: [
-            'Contigo Care may collect, directly or indirectly, the following personal data:',
+            'karai.health may collect, directly or indirectly, the following personal data:',
             [
               'First name',
               'Last name',
@@ -150,8 +150,8 @@ export const COPY: Record<Lang, Copy> = {
               'Messages, queries, requests, comments, voice recordings, transcripts and any other information the data subject provides during the interaction',
               'Technical data about browsing and use of the platform, where necessary for its operation, security and improvement',
             ],
-            'Likewise, based on the information the user shares, Contigo Care may collect sensitive personal data, in particular data relating to health status, symptoms, treatments, conditions, medications, clinical information, patient data or other health information.',
-            'Contigo Care asks that you not provide information that is not necessary to handle the corresponding request or interaction.',
+            'Likewise, based on the information the user shares, karai.health may collect sensitive personal data, in particular data relating to health status, symptoms, treatments, conditions, medications, clinical information, patient data or other health information.',
+            'karai.health asks that you not provide information that is not necessary to handle the corresponding request or interaction.',
           ],
         },
         {
@@ -171,13 +171,13 @@ export const COPY: Record<Lang, Copy> = {
               'Comply with applicable legal, regulatory and contractual obligations',
               'Handle requests to exercise ARCO rights',
             ],
-            'In addition, with your consent where required, Contigo Care may process personal data, including recordings, transcripts, conversations, calls, chats, messages and other interactions, for the following secondary purposes:',
+            'In addition, with your consent where required, karai.health may process personal data, including recordings, transcripts, conversations, calls, chats, messages and other interactions, for the following secondary purposes:',
             [
               'Analyze usage patterns and interactions in order to improve the care experience',
               'Evaluate, develop, train, tune, validate and improve the artificial intelligence models, features and tools used on the platform, including through the analysis of recordings, transcripts and other conversation content',
               'Produce metrics, analysis and statistics, seeking to apply dissociation or anonymization measures where appropriate',
             ],
-            'If you do not want your data processed for the secondary purposes, you may say so by emailing privacidad@contigo.care with the subject line “Negativa de finalidades secundarias”. Refusing will not affect the delivery of the primary purposes.',
+            'If you do not want your data processed for the secondary purposes, you may say so by emailing privacidad@karai.health with the subject line “Negativa de finalidades secundarias”. Refusing will not affect the delivery of the primary purposes.',
           ],
         },
         {
@@ -187,21 +187,21 @@ export const COPY: Record<Lang, Copy> = {
             'Conversations, calls, chats, messages and other interactions carried out through the platform may be recorded, logged, transcribed and stored. Those records may include the personal data and, where applicable, the sensitive personal data the data subject provides during the interaction.',
             'Recordings, transcripts and other records of interactions will be used for the primary purposes described in this notice and, where applicable and where the required consent has been obtained, to analyze, develop, train, tune, validate and improve the artificial intelligence models, features and tools used on the platform.',
             'Care may be provided in whole or in part through artificial intelligence systems, and may be complemented, reviewed or continued by authorized human staff. Data provided during interactions may be analyzed by such systems to generate responses, classify requests, support care and improve the performance, quality and security of the service.',
-            'Where processing involves sensitive personal data, Contigo Care will request the data subject’s express consent through the mechanisms enabled on the platform or during the interaction. By granting it, the data subject acknowledges that their sensitive data may be processed in accordance with this notice and exclusively for the purposes set out here.',
+            'Where processing involves sensitive personal data, karai.health will request the data subject’s express consent through the mechanisms enabled on the platform or during the interaction. By granting it, the data subject acknowledges that their sensitive data may be processed in accordance with this notice and exclusively for the purposes set out here.',
           ],
         },
         {
           num: '[05]',
           title: 'Transfers and remittances of personal data',
           body: [
-            'Contigo Care may carry out national or international remittances and transfers of personal data, including sensitive personal data and records of interactions such as recordings, transcripts, conversations, calls, chats and messages, to the following categories of recipients:',
+            'karai.health may carry out national or international remittances and transfers of personal data, including sensitive personal data and records of interactions such as recordings, transcripts, conversations, calls, chats and messages, to the following categories of recipients:',
             [
               'Pharmaceutical clients, in order to handle the query, request, report or interaction linked to their products, services or programs, as well as to follow up on care, pharmacovigilance, quality, safety and any other applicable purposes',
-              'Technology service providers, including providers of hosting, infrastructure, storage, communications, cybersecurity, analytics, support, Artificial Intelligence tools and information processing, acting on behalf of and under the instructions of Contigo Care or of the pharmaceutical client, for the operation, maintenance, support, security and improvement of the service and of the artificial intelligence models used on the platform',
+              'Technology service providers, including providers of hosting, infrastructure, storage, communications, cybersecurity, analytics, support, Artificial Intelligence tools and information processing, acting on behalf of and under the instructions of karai.health or of the pharmaceutical client, for the operation, maintenance, support, security and improvement of the service and of the artificial intelligence models used on the platform',
               'Affiliated companies, subsidiaries, parent companies or companies under common control, where necessary for the operation and support of the service',
               'Competent authorities, where there is an applicable legal or regulatory obligation or a well-founded request',
             ],
-            'Transfers requiring consent will be carried out only where it has been obtained through the enabled mechanisms. The data subject may object to transfers requiring consent by emailing privacidad@contigo.care with the subject line “Negativa de transferencias”.',
+            'Transfers requiring consent will be carried out only where it has been obtained through the enabled mechanisms. The data subject may object to transfers requiring consent by emailing privacidad@karai.health with the subject line “Negativa de transferencias”.',
             'Data recipients are obliged to treat the data confidentially and in accordance with the purposes that justify the remittance or transfer, and to apply security and protection measures appropriate to the nature of the information.',
           ],
         },
@@ -210,24 +210,24 @@ export const COPY: Record<Lang, Copy> = {
           title: 'ARCO rights and withdrawal of consent',
           body: [
             'The data subject, or their legal representative, may exercise their rights of Access, Rectification, Cancellation or Opposition to the processing of their personal data (“ARCO rights”), and may request the withdrawal of their consent, by sending a request to:',
-            ['Email: privacidad@contigo.care', 'Phone: 55 6944 0696'],
+            ['Email: privacidad@karai.health', 'Phone: 55 6944 0696'],
             'The request must contain at least: the data subject’s name; a means of communicating the response; documents proving identity or representation, where applicable; a clear description of the data in respect of which a right is being exercised; the right being exercised; and any information that helps locate the data.',
-            'Contigo Care will process the request within the time limits set by applicable law. Withdrawal of consent does not have retroactive effect and may be limited where processing is necessary to comply with applicable legal, regulatory, contractual or public-interest obligations.',
+            'karai.health will process the request within the time limits set by applicable law. Withdrawal of consent does not have retroactive effect and may be limited where processing is necessary to comply with applicable legal, regulatory, contractual or public-interest obligations.',
           ],
         },
         {
           num: '[07]',
           title: 'Limiting the use or disclosure of personal data',
           body: [
-            'The data subject may request that the use or disclosure of their personal data be limited by emailing privacidad@contigo.care with the subject line “Limitación de uso o divulgación”. Contigo Care will log the request and apply the measures that are appropriate given the nature of the processing and the applicable obligations.',
+            'The data subject may request that the use or disclosure of their personal data be limited by emailing privacidad@karai.health with the subject line “Limitación de uso o divulgación”. karai.health will log the request and apply the measures that are appropriate given the nature of the processing and the applicable obligations.',
           ],
         },
         {
           num: '[08]',
           title: 'Security and retention measures',
           body: [
-            'Contigo Care implements reasonable administrative, technical and physical measures to protect personal data against damage, loss, alteration, destruction, and unauthorized use, access or processing.',
-            'Personal data, including recordings, transcripts and other records of interactions, will be retained for as long as necessary to fulfil the purposes described, the applicable legal, regulatory and contractual obligations, and the corresponding limitation periods. Afterwards, Contigo Care will delete, block, dissociate or anonymize it, as appropriate.',
+            'karai.health implements reasonable administrative, technical and physical measures to protect personal data against damage, loss, alteration, destruction, and unauthorized use, access or processing.',
+            'Personal data, including recordings, transcripts and other records of interactions, will be retained for as long as necessary to fulfil the purposes described, the applicable legal, regulatory and contractual obligations, and the corresponding limitation periods. Afterwards, karai.health will delete, block, dissociate or anonymize it, as appropriate.',
           ],
         },
         {
@@ -241,14 +241,14 @@ export const COPY: Record<Lang, Copy> = {
           num: '[10]',
           title: 'Changes to this privacy notice',
           body: [
-            'Contigo Care may modify or update this privacy notice to reflect legal, regulatory or operational changes, or changes in its processing practices. Modifications will be made available at contigo.care or through the means Contigo Care determines.',
+            'karai.health may modify or update this privacy notice to reflect legal, regulatory or operational changes, or changes in its processing practices. Modifications will be made available at karai.health or through the means karai.health determines.',
           ],
         },
       ],
       contactNum: '[11]',
       contactTitle: 'Contact',
       contactBody:
-        'For any questions about this privacy notice or about the processing of personal data, you can contact Contigo Care through:',
+        'For any questions about this privacy notice or about the processing of personal data, you can contact karai.health through:',
       contactEmailLabel: '+ Email',
       contactPhoneLabel: '+ Phone',
       contactAddressLabel: '+ Address',
@@ -263,7 +263,7 @@ export const COPY: Record<Lang, Copy> = {
     eyebrow: 'Programas de apoyo al paciente',
     h1a: 'Cuidado que te acompaña desde',
     h1b: 'la primera dosis',
-    sub: 'Contigo Care gestiona programas de apoyo para terapias que necesitan más que una receta: inscripción, acompañamiento en la adherencia y navegación de cuidado bilingüe en un solo lugar.',
+    sub: 'karai.health gestiona programas de apoyo para terapias que necesitan más que una receta: inscripción, acompañamiento en la adherencia y navegación de cuidado bilingüe en un solo lugar.',
     ctaPrimary: 'Inscribir un paciente',
     ctaSecondary: 'Hablar con el equipo',
     metaKey1: 'Idiomas',
@@ -309,20 +309,20 @@ export const COPY: Record<Lang, Copy> = {
       updatedLabel: 'Última actualización',
       updated: '20 de agosto de 2026',
       intro:
-        'Contigo Care opera una plataforma de atención digital para la industria farmacéutica que combina herramientas de inteligencia artificial con atención y supervisión de personal humano.',
+        'karai.health opera una plataforma de atención digital para la industria farmacéutica que combina herramientas de inteligencia artificial con atención y supervisión de personal humano.',
       sections: [
         {
           num: '[01]',
           title: 'Identidad y domicilio del responsable',
           body: [
-            'Home Care Technologies, S.A.P.I. de C.V. (en lo sucesivo, “Contigo Care”), con domicilio en Valentín Gómez Farías 9, Colonia Altavista, Alcaldía Álvaro Obregón, Ciudad de México, México, CP 01060, es responsable del tratamiento y protección de los datos personales que recaba a través del sitio web contigo.care y de los canales de atención asociados al servicio.',
+            'Home Care Technologies, S.A.P.I. de C.V. (en lo sucesivo, “karai.health”), con domicilio en Valentín Gómez Farías 9, Colonia Altavista, Alcaldía Álvaro Obregón, Ciudad de México, México, CP 01060, es responsable del tratamiento y protección de los datos personales que recaba a través del sitio web karai.health y de los canales de atención asociados al servicio.',
           ],
         },
         {
           num: '[02]',
           title: 'Datos personales que se recaban',
           body: [
-            'Contigo Care podrá recabar, directa o indirectamente, los siguientes datos personales:',
+            'karai.health podrá recabar, directa o indirectamente, los siguientes datos personales:',
             [
               'Nombre',
               'Apellidos',
@@ -339,8 +339,8 @@ export const COPY: Record<Lang, Copy> = {
               'Mensajes, consultas, solicitudes, comentarios, grabaciones de voz, transcripciones y demás información que la persona titular proporcione durante la interacción',
               'Datos técnicos de navegación y uso de la plataforma, cuando resulten necesarios para su operación, seguridad y mejora',
             ],
-            'Asimismo, conforme a la información que la persona usuaria comparta, Contigo Care podrá recabar datos personales sensibles, particularmente datos relativos al estado de salud, síntomas, tratamientos, padecimientos, medicamentos, información clínica, datos de pacientes u otra información de salud.',
-            'Contigo Care solicita que no se proporcione información que no sea necesaria para la atención de la solicitud o interacción correspondiente.',
+            'Asimismo, conforme a la información que la persona usuaria comparta, karai.health podrá recabar datos personales sensibles, particularmente datos relativos al estado de salud, síntomas, tratamientos, padecimientos, medicamentos, información clínica, datos de pacientes u otra información de salud.',
+            'karai.health solicita que no se proporcione información que no sea necesaria para la atención de la solicitud o interacción correspondiente.',
           ],
         },
         {
@@ -360,13 +360,13 @@ export const COPY: Record<Lang, Copy> = {
               'Cumplir obligaciones legales, regulatorias y contractuales aplicables',
               'Atender solicitudes para el ejercicio de derechos ARCO',
             ],
-            'Además, con su consentimiento cuando sea exigible, Contigo Care podrá tratar los datos personales, incluidas las grabaciones, transcripciones, conversaciones, llamadas, chats, mensajes y demás interacciones, para las siguientes finalidades secundarias:',
+            'Además, con su consentimiento cuando sea exigible, karai.health podrá tratar los datos personales, incluidas las grabaciones, transcripciones, conversaciones, llamadas, chats, mensajes y demás interacciones, para las siguientes finalidades secundarias:',
             [
               'Analizar patrones de uso e interacciones para mejorar la experiencia de atención',
               'Evaluar, desarrollar, entrenar, ajustar, validar y mejorar los modelos, funcionalidades y herramientas de inteligencia artificial empleados en la plataforma, incluso mediante el análisis de grabaciones, transcripciones y demás contenidos de las conversaciones',
               'Elaborar métricas, análisis y estadísticas, procurando aplicar medidas de disociación o anonimización cuando proceda',
             ],
-            'Si no desea que sus datos se traten para las finalidades secundarias, podrá manifestarlo enviando un correo a privacidad@contigo.care con el asunto “Negativa de finalidades secundarias”. La negativa no afectará la prestación de las finalidades primarias.',
+            'Si no desea que sus datos se traten para las finalidades secundarias, podrá manifestarlo enviando un correo a privacidad@karai.health con el asunto “Negativa de finalidades secundarias”. La negativa no afectará la prestación de las finalidades primarias.',
           ],
         },
         {
@@ -376,21 +376,21 @@ export const COPY: Record<Lang, Copy> = {
             'Las conversaciones, llamadas, chats, mensajes y demás interacciones efectuadas a través de la plataforma podrán ser grabadas, registradas, transcritas y almacenadas. Dichos registros podrán incluir los datos personales y, en su caso, los datos personales sensibles que la persona titular proporcione durante la interacción.',
             'Las grabaciones, transcripciones y demás registros de las interacciones serán utilizados para las finalidades primarias descritas en este aviso y, cuando corresponda y se cuente con el consentimiento exigible, para analizar, desarrollar, entrenar, ajustar, validar y mejorar los modelos, funcionalidades y herramientas de inteligencia artificial utilizados en la plataforma.',
             'La atención podrá ser prestada total o parcialmente mediante sistemas de inteligencia artificial y podrá complementarse, revisarse o continuarse por personal humano autorizado. Los datos proporcionados durante las interacciones podrán ser analizados por tales sistemas para generar respuestas, clasificar solicitudes, apoyar la atención y mejorar el desempeño, calidad y seguridad del servicio.',
-            'Cuando el tratamiento involucre datos personales sensibles, Contigo Care solicitará el consentimiento expreso de la persona titular mediante los mecanismos habilitados en la plataforma o durante la interacción. Al otorgarlo, la persona titular reconoce que sus datos sensibles podrán ser tratados conforme a este aviso y exclusivamente para las finalidades aquí previstas.',
+            'Cuando el tratamiento involucre datos personales sensibles, karai.health solicitará el consentimiento expreso de la persona titular mediante los mecanismos habilitados en la plataforma o durante la interacción. Al otorgarlo, la persona titular reconoce que sus datos sensibles podrán ser tratados conforme a este aviso y exclusivamente para las finalidades aquí previstas.',
           ],
         },
         {
           num: '[05]',
           title: 'Transferencias y remisiones de datos personales',
           body: [
-            'Contigo Care podrá realizar remisiones y transferencias nacionales o internacionales de datos personales, incluyendo datos personales sensibles y registros de las interacciones, tales como grabaciones, transcripciones, conversaciones, llamadas, chats y mensajes, a las siguientes categorías de destinatarios:',
+            'karai.health podrá realizar remisiones y transferencias nacionales o internacionales de datos personales, incluyendo datos personales sensibles y registros de las interacciones, tales como grabaciones, transcripciones, conversaciones, llamadas, chats y mensajes, a las siguientes categorías de destinatarios:',
             [
               'Farmacéuticas clientes para atender la consulta, solicitud, reporte o interacción vinculada con sus productos, servicios o programas, así como para dar seguimiento a la atención, farmacovigilancia, calidad, seguridad y demás finalidades que correspondan',
-              'Proveedores de servicios tecnológicos, incluidos proveedores de alojamiento, infraestructura, almacenamiento, comunicaciones, ciberseguridad, analítica, soporte, herramientas de Inteligencia Artificial y procesamiento de información, que actúen por cuenta e instrucciones de Contigo Care o de la farmacéutica cliente, para la operación, mantenimiento, soporte, seguridad y mejora del servicio y de los modelos de inteligencia artificial empleados en la plataforma',
+              'Proveedores de servicios tecnológicos, incluidos proveedores de alojamiento, infraestructura, almacenamiento, comunicaciones, ciberseguridad, analítica, soporte, herramientas de Inteligencia Artificial y procesamiento de información, que actúen por cuenta e instrucciones de karai.health o de la farmacéutica cliente, para la operación, mantenimiento, soporte, seguridad y mejora del servicio y de los modelos de inteligencia artificial empleados en la plataforma',
               'Empresas afiliadas, subsidiarias, controladoras o bajo control común, cuando resulte necesario para la operación y soporte del servicio',
               'Autoridades competentes, cuando exista una obligación legal, regulatoria o requerimiento fundado aplicable',
             ],
-            'Las transferencias que requieran consentimiento se realizarán únicamente cuando éste haya sido obtenido mediante los mecanismos habilitados. La persona titular podrá manifestar su negativa a las transferencias que requieran consentimiento enviando un correo a privacidad@contigo.care con el asunto “Negativa de transferencias”.',
+            'Las transferencias que requieran consentimiento se realizarán únicamente cuando éste haya sido obtenido mediante los mecanismos habilitados. La persona titular podrá manifestar su negativa a las transferencias que requieran consentimiento enviando un correo a privacidad@karai.health con el asunto “Negativa de transferencias”.',
             'Los destinatarios de los datos estarán obligados a tratarlos de manera confidencial y conforme a las finalidades que justifican la remisión o transferencia, así como a aplicar medidas de seguridad y protección acordes con la naturaleza de la información.',
           ],
         },
@@ -399,24 +399,24 @@ export const COPY: Record<Lang, Copy> = {
           title: 'Derechos ARCO y revocación del consentimiento',
           body: [
             'La persona titular, o su representante legal, podrá ejercer sus derechos de Acceso, Rectificación, Cancelación u Oposición al tratamiento de sus datos personales (“derechos ARCO”), así como solicitar la revocación de su consentimiento, mediante una solicitud enviada a:',
-            ['Correo electrónico: privacidad@contigo.care', 'Teléfono: 55 6944 0696'],
+            ['Correo electrónico: privacidad@karai.health', 'Teléfono: 55 6944 0696'],
             'La solicitud deberá contener, al menos: nombre de la persona titular; medio para comunicar la respuesta; documentos que acrediten identidad o representación, cuando corresponda; descripción clara de los datos respecto de los cuales desea ejercer un derecho; el derecho que busca ejercer; y cualquier elemento que facilite la localización de los datos.',
-            'Contigo Care dará trámite a la solicitud en los plazos previstos por la legislación aplicable. La revocación del consentimiento no tendrá efectos retroactivos y podrá estar limitada cuando el tratamiento sea necesario para cumplir obligaciones legales, regulatorias, contractuales o de interés público aplicables.',
+            'karai.health dará trámite a la solicitud en los plazos previstos por la legislación aplicable. La revocación del consentimiento no tendrá efectos retroactivos y podrá estar limitada cuando el tratamiento sea necesario para cumplir obligaciones legales, regulatorias, contractuales o de interés público aplicables.',
           ],
         },
         {
           num: '[07]',
           title: 'Limitación del uso o divulgación de datos personales',
           body: [
-            'La persona titular podrá solicitar la limitación del uso o divulgación de sus datos personales enviando un correo a privacidad@contigo.care con el asunto “Limitación de uso o divulgación”. Contigo Care registrará la solicitud y aplicará las medidas que resulten procedentes conforme a la naturaleza del tratamiento y las obligaciones aplicables.',
+            'La persona titular podrá solicitar la limitación del uso o divulgación de sus datos personales enviando un correo a privacidad@karai.health con el asunto “Limitación de uso o divulgación”. karai.health registrará la solicitud y aplicará las medidas que resulten procedentes conforme a la naturaleza del tratamiento y las obligaciones aplicables.',
           ],
         },
         {
           num: '[08]',
           title: 'Medidas de seguridad y conservación',
           body: [
-            'Contigo Care implementa medidas administrativas, técnicas y físicas razonables para proteger los datos personales contra daño, pérdida, alteración, destrucción, uso, acceso o tratamiento no autorizado.',
-            'Los datos personales, incluidas las grabaciones, transcripciones y demás registros de interacciones, serán conservados durante el tiempo necesario para cumplir las finalidades descritas, las obligaciones legales, regulatorias y contractuales aplicables, y los plazos de prescripción que correspondan. Posteriormente, Contigo Care los suprimirá, bloqueará, disociará o anonimizará, según resulte procedente.',
+            'karai.health implementa medidas administrativas, técnicas y físicas razonables para proteger los datos personales contra daño, pérdida, alteración, destrucción, uso, acceso o tratamiento no autorizado.',
+            'Los datos personales, incluidas las grabaciones, transcripciones y demás registros de interacciones, serán conservados durante el tiempo necesario para cumplir las finalidades descritas, las obligaciones legales, regulatorias y contractuales aplicables, y los plazos de prescripción que correspondan. Posteriormente, karai.health los suprimirá, bloqueará, disociará o anonimizará, según resulte procedente.',
           ],
         },
         {
@@ -430,14 +430,14 @@ export const COPY: Record<Lang, Copy> = {
           num: '[10]',
           title: 'Cambios al aviso de privacidad',
           body: [
-            'Contigo Care podrá modificar o actualizar este aviso de privacidad para reflejar cambios legales, regulatorios, operativos o en sus prácticas de tratamiento. Las modificaciones estarán disponibles en contigo.care o en el medio que Contigo Care determine.',
+            'karai.health podrá modificar o actualizar este aviso de privacidad para reflejar cambios legales, regulatorios, operativos o en sus prácticas de tratamiento. Las modificaciones estarán disponibles en karai.health o en el medio que karai.health determine.',
           ],
         },
       ],
       contactNum: '[11]',
       contactTitle: 'Contacto',
       contactBody:
-        'Para cualquier duda sobre este aviso de privacidad o sobre el tratamiento de datos personales, puede contactar a Contigo Care a través de:',
+        'Para cualquier duda sobre este aviso de privacidad o sobre el tratamiento de datos personales, puede contactar a karai.health a través de:',
       contactEmailLabel: '+ Correo',
       contactPhoneLabel: '+ Teléfono',
       contactAddressLabel: '+ Domicilio',

@@ -9,7 +9,7 @@ type SiteFooterProps = {
 function SiteFooter({ t }: SiteFooterProps) {
   return (
     <footer className="site-footer mono">
-      <span>Contigo Care © {new Date().getFullYear()}</span>
+      <span>karai.health © {new Date().getFullYear()}</span>
       <RouteLink to={ROUTES.privacy} className="site-footer__link">
         {t.privacy.linkLabel}
       </RouteLink>

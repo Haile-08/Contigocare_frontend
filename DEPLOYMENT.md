@@ -1,7 +1,7 @@
 # How to host this landing page on a DigitalOcean Droplet
 
-This guide explains, step by step, how to put the Contigo Care landing page
-online at **https://contigo.care** using an Ubuntu server and Nginx.
+This guide explains, step by step, how to put the karai.health landing page
+online at **https://karai.health** using an Ubuntu server and Nginx.
 
 It is written for someone who has never done this before. You can copy and
 paste every command. Words in `CAPITALS` are things you must replace with your
@@ -37,7 +37,7 @@ page, Nginx finds the file and brings it back.
 You need:
 
 - A DigitalOcean account.
-- The domain `contigo.care`, and access to wherever its DNS is managed.
+- The domain `karai.health`, and access to wherever its DNS is managed.
 - Access to the code — either the GitHub repository, or a copy you can upload.
 
 ---
@@ -146,7 +146,7 @@ ufw status
 ## Step 6 — Point the domain at the server
 
 This happens in your DNS provider (DigitalOcean's own **Networking → Domains**
-panel, or wherever `contigo.care` is registered).
+panel, or wherever `karai.health` is registered).
 
 Create two records:
 
@@ -155,14 +155,14 @@ Create two records:
 | A    | `@`   | `YOUR_SERVER_IP` |
 | A    | `www` | `YOUR_SERVER_IP` |
 
-`@` means the bare domain `contigo.care`. The `www` record covers
-`www.contigo.care`.
+`@` means the bare domain `karai.health`. The `www` record covers
+`www.karai.health`.
 
 DNS changes take time to spread around the internet — usually a few minutes,
 sometimes up to an hour. Check whether it is ready with:
 
 ```bash
-dig +short contigo.care
+dig +short karai.health
 ```
 
 When that prints your server IP, you can continue. **Do not run the HTTPS step
@@ -246,8 +246,8 @@ Then run `npm run build` again.
 Nginx serves files from `/var/www/`, so we copy the build there:
 
 ```bash
-mkdir -p /var/www/contigo.care
-cp -r /opt/contigocare/dist/* /var/www/contigo.care/
+mkdir -p /var/www/karai.health
+cp -r /opt/contigocare/dist/* /var/www/karai.health/
 ```
 
 `/var/www/` is the normal place to keep websites on Ubuntu. We copy the
@@ -258,13 +258,13 @@ cp -r /opt/contigocare/dist/* /var/www/contigo.care/
 ## Step 10 — Install the Nginx config
 
 The config file is already on the server — it came with the repository, at
-`/opt/contigocare/deploy/nginx/contigo.care.conf`.
+`/opt/contigocare/deploy/nginx/karai.health.conf`.
 
 Put it in place:
 
 ```bash
-cp /opt/contigocare/deploy/nginx/contigo.care.conf /etc/nginx/sites-available/contigo.care
-ln -s /etc/nginx/sites-available/contigo.care /etc/nginx/sites-enabled/
+cp /opt/contigocare/deploy/nginx/karai.health.conf /etc/nginx/sites-available/karai.health
+ln -s /etc/nginx/sites-available/karai.health /etc/nginx/sites-enabled/
 rm /etc/nginx/sites-enabled/default
 ```
 
@@ -286,7 +286,7 @@ systemctl reload nginx
 an error, it tells you the exact line number — fix it and test again. Never
 reload a config that fails the test.
 
-Now open `http://contigo.care`. Your landing page should be there.
+Now open `http://karai.health`. Your landing page should be there.
 
 ---
 
@@ -296,7 +296,7 @@ We use **Certbot** with **Let's Encrypt**, which gives free certificates.
 
 ```bash
 apt install certbot python3-certbot-nginx -y
-certbot --nginx -d contigo.care -d www.contigo.care
+certbot --nginx -d karai.health -d www.karai.health
 ```
 
 Certbot will ask you:
@@ -309,7 +309,7 @@ Certbot then edits the Nginx config for you. It adds the HTTPS server block and
 makes plain HTTP redirect to HTTPS automatically. You do not have to write any
 of that by hand.
 
-Visit `https://contigo.care` — you should see the padlock in the address bar.
+Visit `https://karai.health` — you should see the padlock in the address bar.
 
 Certificates last 90 days and renew themselves. You can confirm the automatic
 renewal works with:
@@ -324,8 +324,8 @@ certbot renew --dry-run
 
 This site uses client side routing, so it has two addresses:
 
-- `https://contigo.care/`
-- `https://contigo.care/privacidad`
+- `https://karai.health/`
+- `https://karai.health/privacidad`
 
 Open the second one **directly** in a new browser tab (do not click a link to
 get there). It must load the privacy page, not a 404.
@@ -352,7 +352,7 @@ console:
 cd /opt/contigocare
 git pull
 npm run build
-rm -rf /var/www/contigo.care/* && cp -r dist/* /var/www/contigo.care/
+rm -rf /var/www/karai.health/* && cp -r dist/* /var/www/karai.health/
 ```
 
 The `rm -rf` clears out old files so nothing stale is left behind from the
@@ -388,10 +388,10 @@ npm install
 npm run build
 
 echo "Publishing..."
-rm -rf /var/www/contigo.care/*
-cp -r dist/* /var/www/contigo.care/
+rm -rf /var/www/karai.health/*
+cp -r dist/* /var/www/karai.health/
 
-echo "Done: https://contigo.care"
+echo "Done: https://karai.health"
 ```
 
 Save with `Ctrl+O`, `Enter`, then exit with `Ctrl+X`. Make it runnable once:
@@ -408,6 +408,172 @@ deploy-contigo
 
 `set -e` means the script stops immediately if the build fails, so a broken
 build never gets published.
+
+---
+
+## Changing the domain
+
+Use this when the site is already online and has to move to a new address,
+for example from `contigo.care` to `karai.health`. Below, `OLD` is the domain
+the site uses now, and `NEW` is the one it is moving to.
+
+The idea: run both domains on the same server for a moment. First the new one
+is set up next to the old one. Then the old one becomes a redirect, so old
+links and bookmarks keep working.
+
+### Before you start
+
+- The code must already use the new name. In this repository, look in
+  `index.html`, `src/content.ts`, `src/App.tsx`, the components, and
+  `deploy/nginx/NEW.conf`. To find anything left over, run:
+  `grep -rn "OLD" --exclude-dir=node_modules .`
+- **The privacy mailbox must exist.** The privacy notice (`/privacidad`) tells
+  people to write to `privacidad@NEW`. This is a legal notice, so that address
+  has to receive email *before* the new site goes live.
+
+### 1. Point the new domain at the server
+
+At your DNS provider, create the same two records that `OLD` has, but for
+`NEW`. Use the same Droplet IP as before:
+
+| Type | Hostname | Value |
+|---|---|---|
+| A | `@` | `YOUR_DROPLET_IP` |
+| A | `www` | `YOUR_DROPLET_IP` |
+
+**Do not delete the `OLD` records.** The redirect in step 5 needs them. Wait
+until the new domain shows your IP:
+
+```bash
+dig +short NEW
+dig +short www.NEW
+```
+
+### 2. Build and publish into a new folder
+
+```bash
+cd /opt/contigocare
+git pull
+npm install
+npm run build
+mkdir -p /var/www/NEW
+cp -r dist/* /var/www/NEW/
+```
+
+The old folder `/var/www/OLD` stays as it is for now. The old site keeps
+working while you do the next steps.
+
+### 3. Switch on the new site, then get its certificate
+
+```bash
+cp /opt/contigocare/deploy/nginx/NEW.conf /etc/nginx/sites-available/NEW
+ln -s /etc/nginx/sites-available/NEW /etc/nginx/sites-enabled/
+nginx -t && systemctl reload nginx
+
+certbot --nginx -d NEW -d www.NEW
+```
+
+Open `https://NEW` and `https://NEW/privacidad`. Both should load and show the
+padlock.
+
+### 4. Point the deploy script at the new folder
+
+If you made `deploy-contigo` (see "Optional: a one-command deploy script"), it
+still copies into the old folder. Update it:
+
+```bash
+sed -i 's#/var/www/OLD#/var/www/NEW#g; s#https://OLD#https://NEW#g' /usr/local/bin/deploy-contigo
+grep -n "var/www\|Done" /usr/local/bin/deploy-contigo   # must show NEW only
+```
+
+If you skip this, the next deploy publishes to the old folder, and you will
+not see your changes on the new domain.
+
+### 5. Turn the old domain into a redirect
+
+Replace the old site's config with one that sends every visitor to the same
+page on the new domain. It keeps the old certificate, so `https://OLD/...`
+redirects without a security warning:
+
+```bash
+cat > /etc/nginx/sites-available/OLD <<'EOF'
+# OLD now only redirects to NEW. The certificate below stays until OLD is retired.
+server {
+    listen 80;
+    listen [::]:80;
+    server_name OLD www.OLD;
+    return 301 https://NEW$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name OLD www.OLD;
+    server_tokens off;
+
+    ssl_certificate /etc/letsencrypt/live/OLD/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/OLD/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    return 301 https://NEW$request_uri;
+}
+EOF
+
+nginx -t && systemctl reload nginx
+```
+
+Check it. The `location` line must show the new domain, with the same path:
+
+```bash
+curl -sI https://OLD/privacidad | grep -i '^location'
+#   → location: https://NEW/privacidad
+curl -sI http://www.OLD/ | grep -i '^location'
+#   → location: https://NEW/
+```
+
+The certificate for `OLD` keeps renewing by itself as long as its DNS records
+point here. Make sure renewal still works:
+
+```bash
+certbot renew --dry-run
+```
+
+Once the redirect works, the old files are no longer used. You can delete
+them:
+
+```bash
+rm -rf /var/www/OLD
+```
+
+### 6. Later: retire the old domain completely
+
+Keep the redirect for as long as people may still have old links. Search
+engines and shared links take months to catch up. When you are ready to stop
+using `OLD` entirely, run these commands **in this order**. If you delete the
+certificate first, `nginx -t` fails because the config still points to it:
+
+```bash
+rm /etc/nginx/sites-enabled/OLD /etc/nginx/sites-available/OLD
+nginx -t && systemctl reload nginx
+certbot delete --cert-name OLD
+```
+
+After that, delete the `OLD` records at your DNS provider.
+
+### What does not change
+
+These names still say `contigocare`. That is on purpose. They are internal,
+visitors never see them, and renaming them gains nothing:
+
+- `/opt/contigocare` (where the code lives)
+- the `deploy-contigo` command
+- the `contigocare-frontend` name in `package.json`
+
+The logo is the heart icon (`src/assets/karai-mark.png`, also
+`public/favicon.png`) next to a text wordmark in `src/components/Header.tsx`.
+To change the name in the logo, edit the text in `Header.tsx`. It is not an
+image.
 
 ---
 
@@ -431,7 +597,7 @@ and reload.
 Nginx cannot read the files. Fix the permissions:
 
 ```bash
-chmod -R 755 /var/www/contigo.care
+chmod -R 755 /var/www/karai.health
 ```
 
 **404 on /privacidad**
@@ -450,7 +616,7 @@ should only affect you, not new visitors.
 
 **Certbot fails**
 
-Almost always DNS. Check `dig +short contigo.care` returns your server IP, and
+Almost always DNS. Check `dig +short karai.health` returns your server IP, and
 that port 80 is open (`ufw status`).
 
 **Read the error log**
@@ -458,7 +624,7 @@ that port 80 is open (`ufw status`).
 This is the most useful command when you are stuck:
 
 ```bash
-tail -n 50 /var/log/nginx/contigo.care.error.log
+tail -n 50 /var/log/nginx/karai.health.error.log
 ```
 
 ---
@@ -474,8 +640,8 @@ tail -n 50 /var/log/nginx/contigo.care.error.log
 | Test the Nginx config | `nginx -t` |
 | Apply a config change | `systemctl reload nginx` |
 | Restart Nginx | `systemctl restart nginx` |
-| See errors | `tail -f /var/log/nginx/contigo.care.error.log` |
-| See visits | `tail -f /var/log/nginx/contigo.care.access.log` |
+| See errors | `tail -f /var/log/nginx/karai.health.error.log` |
+| See visits | `tail -f /var/log/nginx/karai.health.access.log` |
 | Renew certificate manually | `certbot renew` |
 
 **Important paths on the server**
@@ -483,7 +649,7 @@ tail -n 50 /var/log/nginx/contigo.care.error.log
 | Path | What it is |
 |---|---|
 | `/opt/contigocare/` | The repository (source code) |
-| `/var/www/contigo.care/` | The website files that are served |
-| `/etc/nginx/sites-available/contigo.care` | The config you edit |
-| `/etc/nginx/sites-enabled/contigo.care` | The shortcut that switches it on |
+| `/var/www/karai.health/` | The website files that are served |
+| `/etc/nginx/sites-available/karai.health` | The config you edit |
+| `/etc/nginx/sites-enabled/karai.health` | The shortcut that switches it on |
 | `/var/log/nginx/` | The logs |

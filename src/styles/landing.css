@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Contigo Care landing — ported from the design canvas.
+   karai.health landing — ported from the design canvas.
    Section order: header · hero · marquee · program · closing · footer
    ========================================================================== */
 
@@ -76,7 +76,9 @@
 .header__logo {
   display: flex;
   align-items: center;
+  gap: 10px;
   flex-shrink: 0;
+  text-decoration: none;
 }
 
 .header__logo img {
@@ -85,6 +87,22 @@
   display: block;
   filter: var(--logo-filter);
   transition: filter 0.3s ease;
+}
+
+/* The wordmark is live text in the site font, so it follows the theme tokens
+   instead of a baked-in image. */
+.header__wordmark {
+  font-family: var(--sans);
+  font-size: 23px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--accent);
+  transition: color 0.3s ease;
+}
+
+.header__wordmark span {
+  color: var(--accent-2);
 }
 
 .header__nav {
@@ -734,6 +752,14 @@
 
   .header__logo img {
     height: 30px;
+  }
+
+  .header__logo {
+    gap: 8px;
+  }
+
+  .header__wordmark {
+    font-size: 19px;
   }
 
   .header__cta {

@@ -1,5 +1,5 @@
 import type { MouseEvent } from 'react'
-import logo from '../assets/contigo-logo.png'
+import logo from '../assets/karai-mark.png'
 import type { Copy, Lang, Theme } from '../content'
 import { navigate, ROUTES, type Route } from '../router'
 
@@ -33,7 +33,10 @@ function Header({ t, route, lang, onLangChange, theme, onThemeToggle }: HeaderPr
   return (
     <header className="header">
       <a className="header__logo" href={sectionHref('#top')} onClick={goToSection('#top')}>
-        <img src={logo} alt="Contigo Care" />
+        <img src={logo} alt="" />
+        <span className="header__wordmark">
+          karai<span>.health</span>
+        </span>
       </a>
 
       <nav className="header__nav">

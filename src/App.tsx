@@ -25,8 +25,8 @@ function App() {
   useEffect(() => {
     document.title =
       route === ROUTES.privacy
-        ? `${t.privacy.title} — Contigo Care`
-        : `Contigo Care — ${t.eyebrow}`
+        ? `${t.privacy.title} — karai.health`
+        : `karai.health — ${t.eyebrow}`
   }, [route, t])
 
   useEffect(() => {
